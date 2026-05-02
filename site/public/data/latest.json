@@ -1,0 +1,84 @@
+{
+  "type": "idlehacking_public_feed",
+  "generated_at": "2026-05-01T12:00:00.000Z",
+  "date_key": "2026-05-01",
+  "snapshots": {
+    "market": {
+      "commodities": [
+        {
+          "id": "chips",
+          "label": "Chips",
+          "bestBidCents": 7428100,
+          "bestAskCents": 8212900,
+          "spreadPct": 9.55,
+          "volumeQty": 24471545,
+          "hasBook": true,
+          "isActive": true,
+          "isEssence": false
+        },
+        {
+          "id": "packets",
+          "label": "Packets",
+          "bestBidCents": 603,
+          "bestAskCents": 610,
+          "spreadPct": 1.15,
+          "volumeQty": 17100230606,
+          "hasBook": true,
+          "isActive": true,
+          "isEssence": false
+        }
+      ]
+    },
+    "market_events": {
+      "type": "market_delta_events",
+      "schema_version": 1,
+      "captured_at": "2026-05-01T12:00:00.000Z",
+      "source": {
+        "state": "live",
+        "health": "ok",
+        "warnings": []
+      },
+      "events": [
+        {
+          "at": "2026-05-01T11:52:57.572Z",
+          "commodity_id": "packets",
+          "commodity_label": "Packets",
+          "side": "book",
+          "kind": "fill",
+          "qty": 17502030606,
+          "priceCents": 603,
+          "price": 6.03,
+          "filledQty": 17502030606,
+          "canceledQty": 0,
+          "addedQty": 0,
+          "previousQty": 196197845548,
+          "currentQty": 178695814942,
+          "previousPriceCents": 603,
+          "currentPriceCents": 603,
+          "source": "market_delta_watcher"
+        },
+        {
+          "at": "2026-05-01T11:58:02.000Z",
+          "commodity_id": "chips",
+          "commodity_label": "Chips",
+          "side": "book",
+          "kind": "add",
+          "qty": 900000,
+          "priceCents": 8212900,
+          "price": 82129,
+          "filledQty": 0,
+          "canceledQty": 0,
+          "addedQty": 900000,
+          "previousQty": 23671545,
+          "currentQty": 24571545,
+          "previousPriceCents": 8212900,
+          "currentPriceCents": 8212900,
+          "source": "market_delta_watcher"
+        }
+      ]
+    }
+  },
+  "health": {
+    "status": "ok"
+  }
+}

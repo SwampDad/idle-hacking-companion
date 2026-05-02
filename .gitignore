@@ -1,0 +1,15 @@
+_internal/
+
+node_modules/
+site/node_modules/
+site/dist/
+site/.vite/
+
+.DS_Store
+*.log
+
+.env
+.env.*
+!.env.example
+
+*.local
