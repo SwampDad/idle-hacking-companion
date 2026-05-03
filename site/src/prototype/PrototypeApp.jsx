@@ -6,19 +6,8 @@ const links = {
   play: 'https://www.idlehacking.com/play',
   steam: 'https://store.steampowered.com/app/4453290/Idle_Hacking_An_Inaction_RPG/',
   discord: 'https://discord.com/invite/A62Chy8FKk',
-  github: 'https://github.com/SwampDad/idle-hacking-companion',
 };
 
-const routes = {
-  home: 'home',
-  market: 'market',
-  guides: 'guides',
-};
-
-function getRoute() {
-  const raw = String(window.location.hash || '').replace(/^#\/?/, '').toLowerCase();
-  return routes[raw] ? raw : routes.home;
-}
 
 function formatDateTime(value) {
   const date = new Date(value);
@@ -29,6 +18,36 @@ function formatDateTime(value) {
     day: 'numeric',
     hour: 'numeric',
     minute: '2-digit',
+    timeZoneName: 'short',
+  }).format(date);
+}
+
+function formatRelativeAge(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'unavailable';
+
+  const diffMs = Date.now() - date.getTime();
+  const pastMs = Math.max(0, diffMs);
+  const minutes = Math.floor(pastMs / 60000);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (minutes < 1) return 'just now';
+  if (minutes < 60) return `${minutes}m ago`;
+  if (hours < 24) return `${hours}h ago`;
+  return `${days}d ago`;
+}
+
+function formatDateTimeWithZone(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Unavailable';
+
+  return new Intl.DateTimeFormat(undefined, {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZoneName: 'short',
   }).format(date);
 }
 
@@ -36,12 +55,7 @@ function formatMarketUpdated(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return 'Last updated unavailable';
 
-  return `Last updated ${new Intl.DateTimeFormat(undefined, {
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-  }).format(date)}`;
+  return `Last updated ${formatRelativeAge(value)} · ${formatDateTimeWithZone(value)}`;
 }
 
 function formatNumber(value) {
@@ -192,7 +206,7 @@ function formatDelta(value) {
 
 function SortHeader({ label, field, sortState, onSort, className = '' }) {
   const active = sortState.field === field;
-  const marker = active ? (sortState.direction === 'asc' ? ' ↑' : ' ↓') : '';
+  const marker = active ? (sortState.direction === 'asc' ? ' ↑' : ' ↓') : ' ↕';
 
   return (
     <button
@@ -200,8 +214,9 @@ function SortHeader({ label, field, sortState, onSort, className = '' }) {
       className={`sort-header ${active ? 'sort-header-active' : ''} ${className}`}
       onClick={() => onSort(field)}
       aria-label={`Sort by ${label}`}
+      aria-sort={active ? (sortState.direction === 'asc' ? 'ascending' : 'descending') : 'none'}
     >
-      {label}{marker}
+      <span>{label}</span><span className={active ? 'sort-marker' : 'sort-marker sort-marker-muted'}>{marker}</span>
     </button>
   );
 }
@@ -257,17 +272,11 @@ function buildHistorySnapshotsMap(historySnapshots) {
 }
 
 export function PrototypeApp() {
-  const [route, setRoute] = useState(getRoute());
   const [latest, setLatest] = useState(null);
   const [index, setIndex] = useState(null);
   const [historySnapshots, setHistorySnapshots] = useState([]);
   const [loadState, setLoadState] = useState({ loading: true, error: '' });
 
-  useEffect(() => {
-    const onHashChange = () => setRoute(getRoute());
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
-  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -367,21 +376,15 @@ export function PrototypeApp() {
   return (
     <div className="prototype-shell">
       <header className="site-topbar">
-        <a className="site-mark" href="#home" aria-label="Idle Hacking companion home">
-          <strong>Idle Hacking Companion</strong>
+        <a className="site-mark" href="/" aria-label="Idle Hacking Market Viewer home">
+          <strong>Idle Hacking Market Viewer</strong>
         </a>
-        <nav className="primary-nav" aria-label="Primary">
-          <a className={route === routes.home ? 'active' : ''} href="#home">Home</a>
-          <a className={route === routes.market ? 'active' : ''} href="#market">Market</a>
-          <a className={route === routes.guides ? 'active' : ''} href="#guides">Guides</a>
-        </nav>
       </header>
 
       <main className="prototype-page">
         {loadState.loading ? <div className="panel empty-state">Loading public market data…</div> : null}
         {loadState.error ? <div className="panel empty-state">Could not load public market data: {loadState.error}</div> : null}
-        {route === routes.home ? <HomePage commodities={commodities} generatedAt={generatedAt} /> : null}
-        {route === routes.market ? (
+        {!loadState.loading && !loadState.error ? (
           <MarketPage
             commodities={commodities}
             generatedAt={generatedAt}
@@ -389,92 +392,10 @@ export function PrototypeApp() {
             historyCount={historyCount}
           />
         ) : null}
-        {route === routes.guides ? <GuidesPage /> : null}
       </main>
 
       <SiteFooter />
     </div>
-  );
-}
-
-function HomePage({ commodities, generatedAt }) {
-  const marketPreview = commodities[0] || null;
-
-  return (
-    <div className="page-stack">
-      <section className="home-hero">
-        <div className="home-hero-copy">
-          <h1>Idle Hacking</h1>
-          <p className="hero-lede">A persistent idle MMORPG about hacking, gathering, crafting, trading, and climbing the network.</p>
-          <p className="hero-sublede">Unofficial market companion and guide hub for Idle Hacking players.</p>
-          <div className="button-row">
-            <a className="button button-primary" href={links.play}>Play Idle Hacking</a>
-            <a className="button" href={links.steam}>View on Steam</a>
-            <a className="button" href={links.discord}>Join Discord</a>
-          </div>
-        </div>
-      </section>
-
-      <section className="panel support-panel">
-        <h2>Support the developer</h2>
-        <div className="support-link-row">
-          <a className="button button-primary" href={links.play}>Play Idle Hacking</a>
-          <a className="button" href={links.steam}>View on Steam</a>
-          <a className="button" href={links.steam}>Leave a Steam Review</a>
-          <a className="button" href={links.discord}>Join Discord</a>
-        </div>
-      </section>
-
-      <section className="card-grid companion-grid">
-        <MarketCompanionCard commodity={marketPreview} commodityCount={commodities.length} />
-        <GuidesCompanionCard />
-      </section>
-
-      <section className="metric-grid latest-grid">
-        <Metric label="Last updated" value={formatDateTime(generatedAt)} />
-      </section>
-    </div>
-  );
-}
-
-function MarketCompanionCard({ commodity, commodityCount }) {
-  const hasHistory = Array.isArray(commodity?.history7d) && commodity.history7d.length > 1;
-  const trend = hasHistory ? getTrend(commodity) : 'flat';
-
-  return (
-    <a className="companion-card panel market-card" href="#market">
-      <div className="card-visual">
-        {commodity ? (
-          hasHistory ? (
-            <Sparkline values={commodity.history7d} trend={trend} width={190} height={54} />
-          ) : (
-            <span className="empty-state">History pending</span>
-          )
-        ) : (
-          <span className="empty-state">Loading real market data…</span>
-        )}
-      </div>
-      <h3>Market</h3>
-      <p>
-        {commodity
-          ? `Track ${commodity.label} plus ${commodityCount} live commodities, spreads, volume, and recent market volume changes.`
-          : 'Track live commodities, spreads, volume, and recent market volume changes.'}
-      </p>
-    </a>
-  );
-}
-
-function GuidesCompanionCard() {
-  return (
-    <a className="companion-card panel guides-card" href="#guides">
-      <h3>Guides</h3>
-      <ul className="guide-preview-list">
-        <li>SwampDad's Beginner Guide</li>
-        <li>Marketplace Guide</li>
-        <li>Equipment & Affixes</li>
-      </ul>
-      <span className="guide-card-link">All Guides</span>
-    </a>
   );
 }
 
@@ -546,7 +467,7 @@ function MarketPage({ commodities, generatedAt, ranges, historyCount }) {
   return (
     <div className="page-stack">
       <section className="page-heading">
-        <h1>Market</h1>
+        <h1>Idle Hacking Market Viewer</h1>
         <div className="page-updated">{formatMarketUpdated(generatedAt)}</div>
       </section>
 
@@ -596,7 +517,7 @@ function MarketPage({ commodities, generatedAt, ranges, historyCount }) {
                     </label>
                   </div>
                 </th>
-                <th>Sparkline</th>
+                <th className="sparkline-head"><span className="sr-only">Price history sparkline</span></th>
                 <th className="num">
                   <SortHeader label="Diff" field="diff" sortState={sortState} onSort={handleSort} className="sort-header-num" />
                 </th>
@@ -655,68 +576,6 @@ function MarketPage({ commodities, generatedAt, ranges, historyCount }) {
   );
 }
 
-function GuidesPage() {
-  const guides = [
-    {
-      title: 'SwampDad\'s Beginner Guide',
-      text: 'A beginner-friendly guide to early progression and core Idle Hacking systems.',
-      status: 'Published',
-      href: './guides/swampdad-beginner-guide.md',
-      tags: ['Beginner', 'Progression', 'Systems'],
-    },
-    {
-      title: 'Marketplace Guide',
-      text: 'Commodity basics, spreads, volume, and reading the public market feed.',
-      status: 'Coming soon',
-      tags: ['Market', 'Reference'],
-    },
-    {
-      title: 'Equipment & Affixes',
-      text: 'Equipment stats, affix language, and upgrade decision notes.',
-      status: 'Coming soon',
-      tags: ['Equipment', 'Affixes'],
-    },
-    {
-      title: 'Progression Notes',
-      text: 'Player-written notes for steady account growth and routing.',
-      status: 'Coming soon',
-      tags: ['Progression', 'Notes'],
-    },
-  ];
-
-  return (
-    <div className="page-stack">
-      <section className="page-heading">
-        <p className="eyebrow">Player notes</p>
-        <h1>Guides</h1>
-        <p>Beginner notes, marketplace references, equipment explanations, and player-written guides.</p>
-      </section>
-
-      <section className="card-grid guide-grid">
-        {guides.map((guide) => (
-          <article className="panel guide-card" key={guide.title}>
-            <div>
-              <span className={`status-pill ${guide.status === 'Published' ? 'status-published' : ''}`}>{guide.status}</span>
-              <h2>{guide.title}</h2>
-              <div className="tag-row">
-                {guide.tags.map((tag) => <span key={tag}>{tag}</span>)}
-              </div>
-            </div>
-            <p>{guide.text}</p>
-            {guide.href ? <a className="guide-link" href={guide.href}>Open Markdown</a> : null}
-          </article>
-        ))}
-      </section>
-
-      <section className="panel guide-cta">
-        <h2>Want to write a guide?</h2>
-        <p>Suggest one on GitHub or submit a pull request.</p>
-        <a className="button button-primary" href={links.github}>Open GitHub Project</a>
-      </section>
-    </div>
-  );
-}
-
 function Metric({ label, value, subvalue, trend }) {
   return (
     <div className={`metric proto-metric ${trend ? `metric-${trend}` : ''}`}>
@@ -734,7 +593,6 @@ function SiteFooter() {
         <a href={links.official}>Official Site</a>
         <a href={links.steam}>Steam</a>
         <a href={links.discord}>Discord</a>
-        <a href={links.github}>GitHub</a>
       </nav>
     </footer>
   );

@@ -55,7 +55,7 @@ a {
 .topbar {
   display: flex;
   align-items: end;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
   margin-bottom: 18px;
 }
@@ -356,7 +356,7 @@ tbody tr:hover {
 .site-topbar,
 .prototype-page,
 .site-footer {
-  max-width: 1260px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
@@ -381,27 +381,6 @@ tbody tr:hover {
   letter-spacing: 0.01em;
 }
 
-.primary-nav {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 4px;
-  border: 1px solid rgba(92, 99, 112, 0.55);
-  border-radius: 8px;
-  background: rgba(12, 16, 22, 0.62);
-}
-
-.primary-nav a {
-  padding: 8px 12px;
-  border-radius: 5px;
-  color: var(--text-color);
-}
-
-.primary-nav a.active,
-.primary-nav a:hover {
-  color: #f1fbff;
-  background: rgba(97, 175, 239, 0.16);
-}
 
 .prototype-page,
 .page-stack {
@@ -944,7 +923,7 @@ tbody tr:hover {
   }
 
   .market-table {
-    min-width: 820px;
+    min-width: 760px;
   }
 }
 
@@ -1036,6 +1015,10 @@ tbody tr:hover {
   color: #f8fafc;
 }
 
+.sort-marker-muted {
+  color: rgba(203, 213, 225, 0.35);
+}
+
 .sort-header-num {
   text-align: right;
 }
@@ -1045,28 +1028,53 @@ tbody tr:hover {
 }
 
 /* Sparkline is intentionally alone in its own column. */
+.market-panel {
+  max-width: 1080px;
+  overflow: hidden;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.market-table {
+  width: auto;
+  min-width: 760px;
+  max-width: 1040px;
+}
+
 .market-table .col-commodity {
-  width: 20% !important;
+  width: 210px !important;
 }
 
 .market-table .col-price {
-  width: 25% !important;
+  width: 170px !important;
 }
 
 .market-table .col-sparkline {
-  width: 20% !important;
+  width: 170px !important;
 }
 
 .market-table .col-diff {
-  width: 10% !important;
+  width: 92px !important;
 }
 
 .market-table .col-spread {
-  width: 11% !important;
+  width: 96px !important;
 }
 
 .market-table .col-volume {
-  width: 14% !important;
+  width: 112px !important;
+}
+
+.market-table th,
+.market-table td {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.sparkline-head {
+  color: transparent;
 }
 
 .sparkline-cell {
@@ -1083,6 +1091,7 @@ tbody tr:hover {
 }
 
 .price-cell {
+  min-width: 0;
   text-align: left !important;
 }
 
