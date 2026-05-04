@@ -157,7 +157,9 @@ function getTrend(row) {
 }
 
 function dataUrl(path) {
-  return new URL(path.replace(/^\//, ''), window.location.href).toString();
+  const cleanPath = path.replace(/^\/+/, '');
+  const baseUrl = new URL(import.meta.env.BASE_URL, window.location.href);
+  return new URL(cleanPath, baseUrl).toString();
 }
 
 async function loadJson(path) {
