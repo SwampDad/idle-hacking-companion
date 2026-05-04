@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 
 CLOUD_SOURCE = os.environ.get("MARKET_CLOUD_SOURCE", "scraper@46.224.146.164:/home/scraper/data/market/")
 STAGING_DIR = ROOT / "_internal" / "data" / "market" / "cloud"
