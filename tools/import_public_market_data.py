@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import shutil
 import subprocess
@@ -18,6 +19,30 @@ CLOUD_SOURCE = os.environ.get("MARKET_CLOUD_SOURCE", "scraper@46.224.146.164:/ho
 STAGING_DIR = ROOT / "_internal" / "data" / "market" / "cloud"
 PUBLIC_DATA_DIR = ROOT / "site" / "public" / "data"
 PUBLIC_RECENT_DIR = PUBLIC_DATA_DIR / "snapshots" / "recent"
+PUBLIC_HISTORY_DIR = PUBLIC_DATA_DIR / "history"
+PUBLIC_HISTORY_COMMODITIES_DIR = PUBLIC_HISTORY_DIR / "commodities"
+
+HISTORY_FIELDS = [
+    "bestBidCents",
+    "bestAskCents",
+    "midPriceCents",
+    "spreadCents",
+    "spreadPct",
+    "bidVolumeQty",
+    "askVolumeQty",
+    "volumeQty",
+    "bestBidQty",
+    "bestAskQty",
+    "bidLevelCount",
+    "askLevelCount",
+]
+
+HISTORY_RANGE_CONFIG = {
+    "1d": {"span_seconds": 24 * 60 * 60, "bucket_seconds": None, "bucket": "15m"},
+    "7d": {"span_seconds": 7 * 24 * 60 * 60, "bucket_seconds": 60 * 60, "bucket": "1h"},
+    "30d": {"span_seconds": 30 * 24 * 60 * 60, "bucket_seconds": 6 * 60 * 60, "bucket": "6h"},
+    "all": {"span_seconds": None, "bucket_seconds": 24 * 60 * 60, "bucket": "1d"},
+}
 
 FORBIDDEN_EXACT_KEYS = {
     "chat",
@@ -80,6 +105,21 @@ def compact_z(dt: datetime) -> str:
 def dump_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def finite_number(value: Any) -> int | float | None:
+    if isinstance(value, bool):
+        return None
+
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+
+    if not math.isfinite(number):
+        return None
+
+    return int(number) if number.is_integer() else number
 
 
 def pull_cloud() -> dict[str, Any]:
@@ -267,6 +307,230 @@ def build_ranges(valid_items: list[tuple[Path, dict[str, Any], datetime]]) -> di
     }
 
 
+def largest_gap_seconds(points: list[dict[str, Any]]) -> int | None:
+    stamps: list[datetime] = []
+
+    for point in points:
+        try:
+            stamps.append(parse_dt(point.get("t")))
+        except Exception:
+            continue
+
+    stamps.sort()
+    if len(stamps) < 2:
+        return None
+
+    return int(max((right - left).total_seconds() for left, right in zip(stamps, stamps[1:])))
+
+
+def recompute_spread_pct(best_bid: int | float | None, best_ask: int | float | None) -> float | None:
+    if best_bid is None or best_ask is None:
+        return None
+    if best_ask <= 0 or best_ask < best_bid:
+        return None
+    return ((best_ask - best_bid) / best_ask) * 100
+
+
+def build_history_point(row: dict[str, Any], generated_dt: datetime, source_snapshot: str) -> dict[str, Any] | None:
+    best_bid = finite_number(row.get("bestBidCents"))
+    best_ask = finite_number(row.get("bestAskCents"))
+    mid_price = finite_number(row.get("midPriceCents"))
+
+    if mid_price is None and best_bid is not None and best_ask is not None:
+        mid_price = (best_bid + best_ask) / 2
+
+    if mid_price is None and best_bid is not None:
+        mid_price = best_bid
+
+    if mid_price is None and best_ask is not None:
+        mid_price = best_ask
+
+    if mid_price is None:
+        return None
+
+    spread_cents = None
+    if best_bid is not None and best_ask is not None and best_ask >= best_bid:
+        spread_cents = best_ask - best_bid
+
+    point: dict[str, Any] = {
+        "t": iso_z(generated_dt),
+        "bestBidCents": best_bid,
+        "bestAskCents": best_ask,
+        "midPriceCents": mid_price,
+        "spreadCents": spread_cents,
+        "spreadPct": recompute_spread_pct(best_bid, best_ask),
+        "bidVolumeQty": finite_number(row.get("bidVolumeQty")),
+        "askVolumeQty": finite_number(row.get("askVolumeQty")),
+        "volumeQty": finite_number(row.get("volumeQty")),
+        "bestBidQty": finite_number(row.get("bestBidQty")),
+        "bestAskQty": finite_number(row.get("bestAskQty")),
+        "bidLevelCount": finite_number(row.get("bidLevelCount")),
+        "askLevelCount": finite_number(row.get("askLevelCount")),
+        "source": "collector_snapshot",
+        "sourceSnapshot": source_snapshot,
+    }
+
+    return point
+
+
+def downsample_points(points: list[dict[str, Any]], bucket_seconds: int | None) -> list[dict[str, Any]]:
+    if not bucket_seconds:
+        return points
+
+    buckets: dict[int, dict[str, Any]] = {}
+
+    for point in points:
+        try:
+            stamp = parse_dt(point.get("t")).timestamp()
+        except Exception:
+            continue
+
+        bucket = int(stamp // bucket_seconds)
+        buckets[bucket] = point
+
+    return [buckets[key] for key in sorted(buckets)]
+
+
+def filter_range_points(
+    points: list[dict[str, Any]],
+    newest_dt: datetime,
+    range_name: str,
+    config: dict[str, Any],
+) -> list[dict[str, Any]]:
+    span_seconds = config.get("span_seconds")
+    filtered = points
+
+    if span_seconds is not None:
+        cutoff = newest_dt.timestamp() - int(span_seconds)
+        filtered = [
+            point for point in points
+            if parse_dt(point.get("t")).timestamp() >= cutoff
+        ]
+
+    return downsample_points(filtered, config.get("bucket_seconds"))
+
+
+def build_compact_history(valid_items: list[tuple[Path, dict[str, Any], datetime]]) -> tuple[list[str], dict[str, Any] | None]:
+    if not valid_items:
+        return [], None
+
+    valid_items = sorted(valid_items, key=lambda item: item[2])
+    ranges = build_ranges(valid_items).get("available", [])
+    newest_dt = valid_items[-1][2]
+    generated_at = iso_z(datetime.now(timezone.utc))
+    by_commodity: dict[str, dict[str, Any]] = {}
+    written: list[str] = []
+
+    for _, feed, generated_dt in valid_items:
+        source_snapshot = f"snapshots/recent/{compact_z(generated_dt)}.json"
+        commodities = feed.get("market", {}).get("commodities", [])
+        if not isinstance(commodities, list):
+            continue
+
+        for row in commodities:
+            if not isinstance(row, dict):
+                continue
+
+            commodity_id = str(row.get("id") or "").strip()
+            if not commodity_id:
+                continue
+
+            point = build_history_point(row, generated_dt, source_snapshot)
+            if point is None:
+                continue
+
+            commodity = by_commodity.setdefault(commodity_id, {
+                "id": commodity_id,
+                "label": row.get("label") or commodity_id,
+                "isEssence": bool(row.get("isEssence")),
+                "points": [],
+            })
+
+            commodity["label"] = row.get("label") or commodity["label"]
+            commodity["isEssence"] = bool(row.get("isEssence"))
+            commodity["points"].append(point)
+
+    if PUBLIC_HISTORY_DIR.exists():
+        shutil.rmtree(PUBLIC_HISTORY_DIR)
+
+    history_index: dict[str, Any] = {
+        "type": "idlehacking_market_history_index",
+        "schema_version": 1,
+        "generated_at": generated_at,
+        "source": "collector_snapshot",
+        "ranges": ranges,
+        "fields": HISTORY_FIELDS,
+        "commodities": {},
+    }
+
+    for commodity_id in sorted(by_commodity):
+        commodity = by_commodity[commodity_id]
+        points = sorted(commodity["points"], key=lambda point: point["t"])
+        if not points:
+            continue
+
+        commodity_ranges: dict[str, Any] = {}
+
+        for range_name in ranges:
+            config = HISTORY_RANGE_CONFIG.get(range_name)
+            if not config:
+                continue
+
+            range_points = filter_range_points(points, newest_dt, range_name, config)
+            if not range_points:
+                continue
+
+            commodity_ranges[range_name] = {
+                "bucket": config["bucket"],
+                "earliest": range_points[0]["t"],
+                "latest": range_points[-1]["t"],
+                "point_count": len(range_points),
+                "largest_gap_seconds": largest_gap_seconds(range_points),
+                "points": range_points,
+            }
+
+        if not commodity_ranges:
+            continue
+
+        commodity_doc = {
+            "type": "idlehacking_market_commodity_history",
+            "schema_version": 1,
+            "generated_at": generated_at,
+            "source": "collector_snapshot",
+            "commodity": {
+                "id": commodity_id,
+                "label": commodity["label"],
+                "isEssence": commodity["isEssence"],
+            },
+            "fields": HISTORY_FIELDS,
+            "ranges": commodity_ranges,
+        }
+
+        commodity_path = PUBLIC_HISTORY_COMMODITIES_DIR / f"{commodity_id}.json"
+        dump_json(commodity_path, commodity_doc)
+        written.append(str(commodity_path.relative_to(ROOT)))
+
+        all_points = commodity_ranges.get("all", {}).get("points") or points
+        history_index["commodities"][commodity_id] = {
+            "id": commodity_id,
+            "label": commodity["label"],
+            "isEssence": commodity["isEssence"],
+            "path": f"commodities/{commodity_id}.json",
+            "ranges": list(commodity_ranges.keys()),
+            "fields": HISTORY_FIELDS,
+            "earliest": all_points[0]["t"],
+            "latest": all_points[-1]["t"],
+            "point_count": len(points),
+            "largest_gap_seconds": largest_gap_seconds(points),
+        }
+
+    index_path = PUBLIC_HISTORY_DIR / "index.json"
+    dump_json(index_path, history_index)
+    written.append(str(index_path.relative_to(ROOT)))
+
+    return written, history_index
+
+
 def write_public_data(valid_items: list[tuple[Path, dict[str, Any], datetime]]) -> tuple[list[str], dict[str, Any] | None]:
     if not valid_items:
         return [], None
@@ -301,6 +565,9 @@ def write_public_data(valid_items: list[tuple[Path, dict[str, Any], datetime]]) 
     index_path = PUBLIC_DATA_DIR / "index.json"
     dump_json(index_path, index)
     written.append(str(index_path.relative_to(ROOT)))
+
+    history_written, _ = build_compact_history(valid_items)
+    written.extend(history_written)
 
     return written, index
 
@@ -416,7 +683,7 @@ def print_human(summary: dict[str, Any]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Import cloud Idle Hacking public market data into site/public/data.")
-    parser.add_argument("--no-pull", action="store_true", help="Use local staged files only.")
+    parser.add_argument("--no-pull", action="store_true", help="Use local staged files only. Offline/regression use only; normal local refresh should use tools/update_local_market_site.py.")
     parser.add_argument("--json", action="store_true", help="Print machine-readable JSON summary.")
     args = parser.parse_args()
 
