@@ -1,0 +1,491 @@
+{
+  "type": "idlehacking_market_history_index",
+  "schema_version": 1,
+  "generated_at": "2026-05-11T23:27:57Z",
+  "source": "collector_snapshot",
+  "ranges": [
+    "1d",
+    "7d",
+    "all"
+  ],
+  "fields": [
+    "bestBidCents",
+    "bestAskCents",
+    "midPriceCents",
+    "spreadCents",
+    "spreadPct",
+    "bidVolumeQty",
+    "askVolumeQty",
+    "volumeQty",
+    "bestBidQty",
+    "bestAskQty",
+    "bidLevelCount",
+    "askLevelCount"
+  ],
+  "commodities": {
+    "chips": {
+      "id": "chips",
+      "label": "Chips",
+      "isEssence": false,
+      "path": "commodities/chips.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "cycles": {
+      "id": "cycles",
+      "label": "Cycles",
+      "isEssence": false,
+      "path": "commodities/cycles.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "essence_damage": {
+      "id": "essence_damage",
+      "label": "Damage Essence",
+      "isEssence": true,
+      "path": "commodities/essence_damage.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "essence_dexterity": {
+      "id": "essence_dexterity",
+      "label": "Dexterity Essence",
+      "isEssence": true,
+      "path": "commodities/essence_dexterity.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "essence_expertise": {
+      "id": "essence_expertise",
+      "label": "Expertise Essence",
+      "isEssence": true,
+      "path": "commodities/essence_expertise.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "essence_optimization": {
+      "id": "essence_optimization",
+      "label": "Optimization Essence",
+      "isEssence": true,
+      "path": "commodities/essence_optimization.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "essence_precision": {
+      "id": "essence_precision",
+      "label": "Precision Essence",
+      "isEssence": true,
+      "path": "commodities/essence_precision.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "essence_prosperity": {
+      "id": "essence_prosperity",
+      "label": "Prosperity Essence",
+      "isEssence": true,
+      "path": "commodities/essence_prosperity.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "essence_retribution": {
+      "id": "essence_retribution",
+      "label": "Retribution Essence",
+      "isEssence": true,
+      "path": "commodities/essence_retribution.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "essence_survival": {
+      "id": "essence_survival",
+      "label": "Survival Essence",
+      "isEssence": true,
+      "path": "commodities/essence_survival.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "hackcoin": {
+      "id": "hackcoin",
+      "label": "Hackcoin",
+      "isEssence": false,
+      "path": "commodities/hackcoin.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "hashes": {
+      "id": "hashes",
+      "label": "Hashes",
+      "isEssence": false,
+      "path": "commodities/hashes.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "packets": {
+      "id": "packets",
+      "label": "Packets",
+      "isEssence": false,
+      "path": "commodities/packets.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "premium_access_keys_30d": {
+      "id": "premium_access_keys_30d",
+      "label": "Premium Access Key (30d)",
+      "isEssence": false,
+      "path": "commodities/premium_access_keys_30d.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "snippets": {
+      "id": "snippets",
+      "label": "Snippets",
+      "isEssence": false,
+      "path": "commodities/snippets.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    },
+    "stabilizers": {
+      "id": "stabilizers",
+      "label": "Stabilizers",
+      "isEssence": false,
+      "path": "commodities/stabilizers.json",
+      "ranges": [
+        "1d",
+        "7d",
+        "all"
+      ],
+      "fields": [
+        "bestBidCents",
+        "bestAskCents",
+        "midPriceCents",
+        "spreadCents",
+        "spreadPct",
+        "bidVolumeQty",
+        "askVolumeQty",
+        "volumeQty",
+        "bestBidQty",
+        "bestAskQty",
+        "bidLevelCount",
+        "askLevelCount"
+      ],
+      "earliest": "2026-05-03T23:46:55Z",
+      "latest": "2026-05-11T23:13:55Z",
+      "point_count": 847,
+      "largest_gap_seconds": 1800
+    }
+  }
+}
