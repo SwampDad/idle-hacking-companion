@@ -1,5 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { HistoryChart } from './HistoryChart';
 import { Sparkline } from './Sparkline';
+import {
+  getAvailableHistoryRanges as getCompactHistoryRanges,
+  getHistoryRangeLabel,
+  loadCommodityHistory,
+  loadHistoryIndex,
+} from './historyData';
 
 const links = {
   official: 'https://www.idlehacking.com/',
@@ -8,6 +15,17 @@ const links = {
   discord: 'https://discord.com/invite/A62Chy8FKk',
 };
 
+const TABLE_HISTORY_RANGES = [
+  '1d',
+  '7d',
+  // Add '28d' here once the public compact history has enough source coverage.
+];
+const RANGE_CUTOFF_MS = {
+  '1d': 24 * 60 * 60 * 1000,
+  '7d': 7 * 24 * 60 * 60 * 1000,
+  // Prefer 28d over a calendar "1mo" label so the chart window is exact.
+  '28d': 28 * 24 * 60 * 60 * 1000,
+};
 
 function formatDateTime(value) {
   const date = new Date(value);
@@ -56,6 +74,95 @@ function formatMarketUpdated(value) {
   if (Number.isNaN(date.getTime())) return 'Last updated unavailable';
 
   return `Last updated ${formatRelativeAge(value)} · ${formatDateTimeWithZone(value)}`;
+}
+
+function formatDetailedRelativeAge(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'unavailable';
+
+  const diffMs = Date.now() - date.getTime();
+  const pastMs = Math.max(0, diffMs);
+  const minutes = Math.floor(pastMs / 60000);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (minutes < 1) return 'just now';
+  if (minutes < 60) return `${minutes}m ago`;
+  if (hours < 24) {
+    const remMinutes = minutes % 60;
+    return remMinutes ? `${hours}h ${remMinutes}m ago` : `${hours}h ago`;
+  }
+  return `${days}d ago`;
+}
+
+function getAvailableRanges(ranges) {
+  if (Array.isArray(ranges?.available)) {
+    return ranges.available
+      .map((range) => String(range).trim())
+      .filter((range) => TABLE_HISTORY_RANGES.includes(range));
+  }
+
+  return [
+    ranges?.has_1d ? '1d' : null,
+    ranges?.has_7d ? '7d' : null,
+    // ranges?.has_28d ? '28d' : null,
+  ].filter((range) => range && TABLE_HISTORY_RANGES.includes(range));
+}
+
+function getDefaultHistoryRange(ranges) {
+  const available = getAvailableRanges(ranges);
+  const configuredDefault = String(ranges?.default || '').trim();
+
+  if (available.includes(configuredDefault)) return configuredDefault;
+  if (available.includes('1d')) return '1d';
+  return available[0] || '1d';
+}
+
+function getHistoryRangeCutoff(newestStamp, range) {
+  if (range === 'all') return Number.NEGATIVE_INFINITY;
+
+  const duration = RANGE_CUTOFF_MS[range] || RANGE_CUTOFF_MS['1d'];
+  return newestStamp - duration;
+}
+
+function getBestHistoryRangeLabel(ranges) {
+  const available = getAvailableRanges(ranges);
+  const priority = ['7d', '1d'];
+  const best = priority.find((range) => available.includes(range));
+
+  if (!best) return '';
+  return `${best} history available`;
+}
+
+function getMarketFreshness(value, { snapshotCount = 0, ranges = {} } = {}) {
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return {
+      isStale: false,
+      text: 'Last updated unavailable',
+    };
+  }
+
+  const stale = Date.now() - date.getTime() > 90 * 60 * 1000;
+  const parts = [
+    stale ? `Data delayed · last update ${formatDetailedRelativeAge(value)}` : formatMarketUpdated(value),
+  ];
+
+  return {
+    isStale: stale,
+    text: parts.join(' · '),
+  };
+}
+
+function isLocalHost() {
+  return ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+}
+
+function isOlderThan(value, minutes) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return false;
+  return Date.now() - date.getTime() > minutes * 60 * 1000;
 }
 
 function formatNumber(value) {
@@ -142,9 +249,14 @@ function formatPercent(value) {
   return `${Number(value) > 0 ? '+' : ''}${Number(value).toFixed(1)}%`;
 }
 
+function formatPlainPercent(value) {
+  if (!Number.isFinite(Number(value))) return '—';
+  return `${Number(value).toFixed(1)}%`;
+}
+
 function getMovePct(row) {
-  const first = row.history7d?.[0];
-  const last = row.history7d?.[row.history7d.length - 1];
+  const first = row.sparklineHistory?.[0];
+  const last = row.sparklineHistory?.[row.sparklineHistory.length - 1];
   if (!Number.isFinite(Number(first)) || !Number.isFinite(Number(last)) || first === 0) return 0;
   return ((last - first) / first) * 100;
 }
@@ -223,7 +335,7 @@ function SortHeader({ label, field, sortState, onSort, className = '' }) {
   );
 }
 
-function buildHistorySnapshotsMap(historySnapshots) {
+function buildHistorySnapshotsMap(historySnapshots, range = '1d') {
   const entries = [];
   const seen = new Set();
 
@@ -249,7 +361,7 @@ function buildHistorySnapshotsMap(historySnapshots) {
   }
 
   const newestStamp = entries[entries.length - 1].stamp;
-  const cutoff = newestStamp - 24 * 60 * 60 * 1000;
+  const cutoff = getHistoryRangeCutoff(newestStamp, range);
   const recent = entries.filter((entry) => entry.stamp >= cutoff);
   const historyMap = new Map();
 
@@ -277,6 +389,7 @@ export function PrototypeApp() {
   const [latest, setLatest] = useState(null);
   const [index, setIndex] = useState(null);
   const [historySnapshots, setHistorySnapshots] = useState([]);
+  const [historyRange, setHistoryRange] = useState('1d');
   const [loadState, setLoadState] = useState({ loading: true, error: '' });
 
 
@@ -322,6 +435,8 @@ export function PrototypeApp() {
         return;
       }
 
+      // Interim path: raw snapshot fan-out keeps the table range selector honest for now.
+      // Compact history files should replace this before longer history ranges grow.
       const settled = await Promise.allSettled(
         recent.map(async (row) => {
           if (!row?.path) return null;
@@ -359,20 +474,34 @@ export function PrototypeApp() {
     };
   }, [index]);
 
+  useEffect(() => {
+    if (!index?.ranges) return;
+
+    const available = getAvailableRanges(index.ranges);
+    const nextRange = available.includes(historyRange)
+      ? historyRange
+      : getDefaultHistoryRange(index.ranges);
+
+    if (nextRange !== historyRange) {
+      setHistoryRange(nextRange);
+    }
+  }, [index?.ranges, historyRange]);
+
   const commodities = useMemo(() => {
-    const historyMap = buildHistorySnapshotsMap(historySnapshots);
+    const historyMap = buildHistorySnapshotsMap(historySnapshots, historyRange);
 
     return (latest?.market?.commodities || []).map((row) => {
-      const history7d = historyMap.get(row.id) || [];
+      const sparklineHistory = historyMap.get(row.id) || [];
       return normalizeCommodity({
         ...row,
-        history7d,
+        sparklineHistory,
       });
     });
-  }, [latest, historySnapshots]);
+  }, [latest, historyRange, historySnapshots]);
 
   const generatedAt = latest?.generated_at || '';
   const ranges = index?.ranges || {};
+  const snapshotCount = Array.isArray(index?.recent) ? index.recent.length : historySnapshots.length;
   const historyCount = historySnapshots.length;
 
   return (
@@ -391,7 +520,10 @@ export function PrototypeApp() {
             commodities={commodities}
             generatedAt={generatedAt}
             ranges={ranges}
+            snapshotCount={snapshotCount}
             historyCount={historyCount}
+            historyRange={historyRange}
+            onHistoryRangeChange={setHistoryRange}
           />
         ) : null}
       </main>
@@ -401,22 +533,26 @@ export function PrototypeApp() {
   );
 }
 
-function MarketPage({ commodities, generatedAt, ranges, historyCount }) {
+function MarketPage({
+  commodities,
+  generatedAt,
+  ranges,
+  snapshotCount,
+  historyCount,
+  historyRange,
+  onHistoryRangeChange,
+}) {
   const [includeEssences, setIncludeEssences] = useState(false);
-  const [historyRange, setHistoryRange] = useState(ranges.has_1d ? '1d' : 'all');
   const [sortState, setSortState] = useState({ field: 'name', direction: 'asc' });
+  const [selectedCommodityId, setSelectedCommodityId] = useState(null);
+  const freshness = getMarketFreshness(generatedAt, { snapshotCount, ranges });
+  const showLocalStaleWarning = isLocalHost() && isOlderThan(generatedAt, 90);
 
-  const rangeOptions = [
-    ranges.has_1d ? { value: '1d', label: '1d' } : null,
-    ranges.has_7d ? { value: '7d', label: '7d' } : null,
-    ranges.has_30d ? { value: '30d', label: '30d' } : null,
-    ranges.has_all ? { value: 'all', label: 'All' } : null,
-  ].filter(Boolean);
-
-  useEffect(() => {
-    if (ranges.has_1d && historyRange !== '1d') setHistoryRange('1d');
-    else if (!ranges.has_1d && ranges.has_all && historyRange !== 'all') setHistoryRange('all');
-  }, [ranges.has_1d, ranges.has_all]);
+  const availableRanges = getAvailableRanges(ranges);
+  const rangeOptions = (availableRanges.length ? availableRanges : [historyRange]).map((range) => ({
+    value: range,
+    label: range,
+  }));
 
   const handleSort = (field) => {
     setSortState((current) => ({
@@ -466,11 +602,25 @@ function MarketPage({ commodities, generatedAt, ranges, historyCount }) {
     });
   }, [commodities, includeEssences, sortState]);
 
+  const selectedCommodity = useMemo(() => {
+    if (!selectedCommodityId) return null;
+    return commodities.find((row) => row.id === selectedCommodityId) || null;
+  }, [commodities, selectedCommodityId]);
+
+  const openCommodityDetail = (commodityId) => {
+    setSelectedCommodityId(commodityId);
+  };
+
   return (
     <div className="page-stack">
       <section className="page-heading">
         <h1>Idle Hacking Market Viewer</h1>
-        <div className="page-updated">{formatMarketUpdated(generatedAt)}</div>
+        <div className={`page-updated ${freshness.isStale ? 'page-updated-stale' : ''}`}>
+          {freshness.text}
+        </div>
+        {showLocalStaleWarning ? (
+          <div className="page-local-warning">Local bundled data · stale</div>
+        ) : null}
       </section>
 
       <section className="panel market-panel">
@@ -510,7 +660,7 @@ function MarketPage({ commodities, generatedAt, ranges, historyCount }) {
                       <select
                         className="range-select"
                         value={historyRange}
-                        onChange={(event) => setHistoryRange(event.target.value)}
+                        onChange={(event) => onHistoryRangeChange(event.target.value)}
                       >
                         {rangeOptions.map((option) => (
                           <option value={option.value} key={option.value}>{option.label}</option>
@@ -534,14 +684,33 @@ function MarketPage({ commodities, generatedAt, ranges, historyCount }) {
             <tbody>
               {visibleCommodities.map((row) => {
                 const trend = getTrend(row);
-                const hasHistory = historyCount > 1 && Array.isArray(row.history7d) && row.history7d.length > 1;
+                const hasHistory = historyCount > 1 && Array.isArray(row.sparklineHistory) && row.sparklineHistory.length > 1;
                 const spread = getSpreadPct(row);
 
                 return (
-                  // TODO: add commodity detail panel with larger price/volume chart when real history is available.
-                  <tr key={row.id}>
+                  <tr
+                    key={row.id}
+                    className="market-row-clickable"
+                    tabIndex={0}
+                    onClick={() => openCommodityDetail(row.id)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openCommodityDetail(row.id);
+                      }
+                    }}
+                  >
                     <td>
-                      <div className="commodity-name">{displayCommodityName(row.label)}</div>
+                      <button
+                        type="button"
+                        className="commodity-name commodity-detail-trigger"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          openCommodityDetail(row.id);
+                        }}
+                      >
+                        {displayCommodityName(row.label)}
+                      </button>
                     </td>
                     <td className="price-cell">
                       <div className="price-primary">{formatMainCredits(row.midPriceCents)}</div>
@@ -553,7 +722,17 @@ function MarketPage({ commodities, generatedAt, ranges, historyCount }) {
                       </div>
                     </td>
                     <td className="sparkline-cell">
-                      {hasHistory ? <Sparkline values={row.history7d} trend={trend} /> : <span className="muted">history pending</span>}
+                      <button
+                        type="button"
+                        className="sparkline-trigger"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          openCommodityDetail(row.id);
+                        }}
+                        aria-label={`Open ${displayCommodityName(row.label)} history`}
+                      >
+                        {hasHistory ? <Sparkline values={row.sparklineHistory} trend={trend} /> : <span className="muted">history pending</span>}
+                      </button>
                     </td>
                     <td className={`num diff-cell delta-${trend}`}>
                       {hasHistory ? formatDelta(getMovePct(row)) : '—'}
@@ -573,7 +752,142 @@ function MarketPage({ commodities, generatedAt, ranges, historyCount }) {
         </div>
       </section>
 
+      {selectedCommodity ? (
+        <CommodityDetailDrawer
+          commodity={selectedCommodity}
+          onClose={() => setSelectedCommodityId(null)}
+        />
+      ) : null}
+
       {/* Keep Recent Volume Changes off the page for now. User explicitly requested this section stay removed. */}
+    </div>
+  );
+}
+
+function CommodityDetailDrawer({ commodity, onClose }) {
+  const [historyState, setHistoryState] = useState({
+    loading: true,
+    error: '',
+    index: null,
+    history: null,
+  });
+  const [selectedRange, setSelectedRange] = useState('1d');
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadDetailHistory() {
+      setHistoryState({ loading: true, error: '', index: null, history: null });
+
+      try {
+        const [historyIndex, commodityHistory] = await Promise.all([
+          loadHistoryIndex().catch(() => null),
+          loadCommodityHistory(commodity.id),
+        ]);
+
+        if (cancelled) return;
+
+        const availableRanges = getCompactHistoryRanges(commodityHistory).filter((range) => range === '1d' || range === '7d');
+        setHistoryState({
+          loading: false,
+          error: '',
+          index: historyIndex,
+          history: commodityHistory,
+        });
+        setSelectedRange((current) => {
+          if (availableRanges.includes(current)) return current;
+          if (availableRanges.includes('1d')) return '1d';
+          return availableRanges[0] || '1d';
+        });
+      } catch (error) {
+        if (!cancelled) {
+          setHistoryState({
+            loading: false,
+            error: String(error?.message || error),
+            index: null,
+            history: null,
+          });
+        }
+      }
+    }
+
+    loadDetailHistory();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [commodity.id]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
+  const ranges = getCompactHistoryRanges(historyState.history).filter((range) => range === '1d' || range === '7d');
+  const rangeOptions = ranges.map((range) => ({
+    value: range,
+    label: getHistoryRangeLabel(range, historyState.history?.ranges?.[range]),
+  }));
+  const selectedRangeMeta = historyState.history?.ranges?.[selectedRange] || null;
+  const points = Array.isArray(selectedRangeMeta?.points) ? selectedRangeMeta.points : [];
+  const spreadCents = Number.isFinite(Number(commodity?.bestAskCents)) && Number.isFinite(Number(commodity?.bestBidCents))
+    ? Number(commodity.bestAskCents) - Number(commodity.bestBidCents)
+    : null;
+
+  return (
+    <div className="detail-backdrop" onPointerDown={onClose}>
+      <aside
+        className="detail-drawer"
+        aria-modal="true"
+        role="dialog"
+        aria-label={`${displayCommodityName(commodity.label)} market history`}
+        onPointerDown={(event) => event.stopPropagation()}
+      >
+        <div className="detail-head">
+          <div>
+            <p className="detail-eyebrow">Commodity history</p>
+            <h2>{displayCommodityName(commodity.label)}</h2>
+          </div>
+          <button type="button" className="detail-close" onClick={onClose} aria-label="Close detail view">x</button>
+        </div>
+
+        <div className="detail-stat-grid">
+          <Metric label="Bid" value={formatMainCredits(commodity.bestBidCents)} subvalue={`${formatCompactQuantity(commodity.bestBidQty)} best qty`} />
+          <Metric label="Ask" value={formatMainCredits(commodity.bestAskCents)} subvalue={`${formatCompactQuantity(commodity.bestAskQty)} best qty`} />
+          <Metric label="Mid" value={formatMainCredits(commodity.midPriceCents)} />
+          <Metric label="Spread" value={formatRoundedCreditSubline(spreadCents)} subvalue={`${formatPlainPercent(getSpreadPct(commodity))}`} />
+          <Metric label="Visible volume" value={formatCompactQuantity(commodity.volumeQty)} subvalue={`${formatCompactQuantity(commodity.bidVolumeQty)} bid · ${formatCompactQuantity(commodity.askVolumeQty)} ask`} />
+        </div>
+
+        <div className="detail-toolbar">
+          <div className="segmented-control" aria-label="History range">
+            {rangeOptions.map((option) => (
+              <button
+                type="button"
+                key={option.value}
+                className={option.value === selectedRange ? 'segment-active' : ''}
+                onClick={() => setSelectedRange(option.value)}
+              >
+                {option.label}
+              </button>
+            ))}
+            {/* Add 28d once public compact history has enough source coverage. */}
+          </div>
+        </div>
+
+        {historyState.loading ? <div className="history-chart-empty">Loading compact history…</div> : null}
+        {historyState.error ? <div className="history-chart-empty">Could not load compact history: {historyState.error}</div> : null}
+        {!historyState.loading && !historyState.error && !points.length ? (
+          <div className="history-chart-empty">No compact history points for this range.</div>
+        ) : null}
+        {!historyState.loading && !historyState.error && points.length ? (
+          <HistoryChart points={points} />
+        ) : null}
+      </aside>
     </div>
   );
 }
