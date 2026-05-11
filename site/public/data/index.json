@@ -1,9 +1,27 @@
 {
   "type": "idlehacking_market_data_index",
   "schema_version": 1,
-  "generated_at": "2026-05-11T09:27:58Z",
+  "generated_at": "2026-05-11T09:57:56Z",
   "latest": "latest.json",
   "recent": [
+    {
+      "path": "snapshots/recent/2026-05-11T094355Z.json",
+      "generated_at": "2026-05-11T09:43:55Z",
+      "market_captured_at": "2026-05-11T09:43:55.081Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-05-11T092830Z.json",
+      "generated_at": "2026-05-11T09:28:30Z",
+      "market_captured_at": "2026-05-11T09:28:30.043Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
     {
       "path": "snapshots/recent/2026-05-11T091330Z.json",
       "generated_at": "2026-05-11T09:13:30Z",
