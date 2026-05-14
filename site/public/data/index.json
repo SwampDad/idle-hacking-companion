@@ -1,9 +1,81 @@
 {
   "type": "idlehacking_market_data_index",
   "schema_version": 1,
-  "generated_at": "2026-05-14T15:26:14Z",
+  "generated_at": "2026-05-14T17:23:04Z",
   "latest": "latest.json",
   "recent": [
+    {
+      "path": "snapshots/recent/2026-05-14T171249Z.json",
+      "generated_at": "2026-05-14T17:12:49Z",
+      "market_captured_at": "2026-05-14T17:12:49.054Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-05-14T165749Z.json",
+      "generated_at": "2026-05-14T16:57:49Z",
+      "market_captured_at": "2026-05-14T16:57:49.036Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-05-14T164249Z.json",
+      "generated_at": "2026-05-14T16:42:49Z",
+      "market_captured_at": "2026-05-14T16:42:49.034Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-05-14T162749Z.json",
+      "generated_at": "2026-05-14T16:27:49Z",
+      "market_captured_at": "2026-05-14T16:27:49.029Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-05-14T161249Z.json",
+      "generated_at": "2026-05-14T16:12:49Z",
+      "market_captured_at": "2026-05-14T16:12:49.033Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-05-14T155749Z.json",
+      "generated_at": "2026-05-14T15:57:49Z",
+      "market_captured_at": "2026-05-14T15:57:49.029Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-05-14T154249Z.json",
+      "generated_at": "2026-05-14T15:42:49Z",
+      "market_captured_at": "2026-05-14T15:42:49.036Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-05-14T152749Z.json",
+      "generated_at": "2026-05-14T15:27:49Z",
+      "market_captured_at": "2026-05-14T15:27:49.041Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
     {
       "path": "snapshots/recent/2026-05-14T151249Z.json",
       "generated_at": "2026-05-14T15:12:49Z",
