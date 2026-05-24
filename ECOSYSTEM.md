@@ -44,6 +44,7 @@ The labels below are intentionally cautious and reflect the discovery report rat
 | Discord export -> KB ingest | `idlehacking_kb` | `scripts/discord/ingest_discord.py`, `scripts/discord/build_prepared_artifacts.py`, `scripts/daily_runner.py` | Export CSV from Discord and place it in Downloads | `data/discord/<server_name>/archive/channels/<channel_id>.csv` | Medium | No alert if the export is missing or format changes |
 | VPS chat collection -> KB ingest | `idlehacking_kb` | `scripts/chat/ingest_collector_chat.py`, `scripts/chat/ingest_chat.py`, `scripts/chat/audit_vps_chat_export.py`, `scripts/daily_runner.py` | None if SSH and rsync are healthy | `data/chat/collector/archive/channels/{main,help,trade}.jsonl` plus index, observations, ledger, provenance | Medium | Chrome crash, SSH key issues, VPS disk full, rsync failures |
 | VPS market collection -> GitHub Actions -> GitHub Pages | `ih_market_companion` | `_internal/scripts/idle_hacking_collector.js`, `_internal/vps_helper/collector_helper.py`, `tools/import_public_market_data.py`, `.github/workflows/update-market-data.yml`, `.github/workflows/pages.yml` | None for the automated lane | `site/public/data/latest.json`, `index.json`, `snapshots/recent/*.json`, `history/` | Medium | Chrome OOM/crash, Tampermonkey disabled, cron skipped, no alerting |
+| WGU-Reddit VPS shadow-run | `WGU-Reddit` for runtime behavior; `ih_market_companion` for host lane documentation | `/home/scraper/apps/wgu-reddit`, `/home/scraper/data/wgu-reddit/WGU-Reddit.db`, `/home/scraper/data/wgu-reddit/exports/`, `/home/scraper/logs/wgu-reddit/` | User-level systemd timer installed for daily `03:00 America/New_York`; shadow-run only; no cutover | Validation exports downloaded to `/Users/buddy/Desktop/WGU-Reddit/db/imports/vps/` | Medium after manual ingest/export passed | Missing post-schedule health wrapper, export retention not automated, accidental cutover, blind DB overwrite |
 | Local market import/update | `ih_market_companion` | `tools/update_local_market_site.py`, `tools/import_public_market_data.py`, `_internal/scripts/update_market_data_local.sh` | Run the update command locally | Refreshed `site/public/data/` for the dev server | Medium | Local copy can succeed while source data is stale |
 | Trade event recording/export/import | `idle-hacker` | `market_strategy/scripts/record_market_events.user.js`, `market_strategy/scripts/ingest_market_recorder_exports.py` | Export JSONL from the browser or IndexedDB | `trading_events.jsonl`, recent CSVs, `manager_packet.*`, summaries | Medium | High: if the recorder is disabled, trades are silently missed |
 | Daily KB runner | `idlehacking_kb` | `scripts/daily_runner.py` | User must already have the right exports in Downloads when fallback steps are needed | Run reports under `docs/reports/daily_runner/<timestamp>/` | Medium | Any sub-step can fail without a separate alerting loop |
@@ -70,6 +71,12 @@ Key paths:
 - `/Users/buddy/projects/ih_market_companion/tools/ensure_market_pipeline_health.py`
 - `/Users/buddy/projects/ih_market_companion/.github/workflows/update-market-data.yml`
 - `/Users/buddy/projects/ih_market_companion/.github/workflows/pages.yml`
+- `/home/scraper/apps/wgu-reddit`
+- `/home/scraper/data/wgu-reddit/WGU-Reddit.db`
+- `/home/scraper/data/wgu-reddit/exports/`
+- `/home/scraper/logs/wgu-reddit/`
+- `/home/scraper/.config/systemd/user/wgu-reddit-shadow-run.{service,timer}`
+- `/home/scraper/config/wgu-reddit.env` (host-local secret/config path; do not commit or print values)
 - `/Users/buddy/projects/idlehacking_kb/docs/infrastructure/vps_rdp_setup.md`
 - `/Users/buddy/projects/idlehacking_kb/docs/workflows/vps_data_flow_analysis.md`
 
@@ -104,3 +111,28 @@ This file was derived from:
 
 - The companion repo is currently named `ih_market_companion`, but the ecosystem scope is broader than a market companion.
 - `discovery_report.md` is kept as raw discovery evidence for now. If it is renamed later, this file should continue to point to the polished ecosystem index.
+
+## Ownership Boundaries (2026-05-24)
+
+### Confirmed Boundaries
+
+| Repo | Owns | Do Not Move Without Approval |
+|------|------|------------------------------|
+| `idle-hacker` | Game-facing userscripts (`scripts/IH_scripts/`), market strategy (`market_strategy/`), site snapshot diff, browser chat capture, Discord intake workspace | `scripts/IH_scripts/`, `market_strategy/` |
+| `idlehacking_kb` | KB normalization, Discord/VPS chat ingest (canonical), reports (`docs/reports/`), registries (`data/registry/`), benchmarks (`bench_llm/`) | `scripts/discord/`, `scripts/chat/`, `data/registry/` |
+| `ih_market_companion` | Public market site, VPS helper code, VPS operational docs, health checks, GitHub Pages/Actions workflows | `_internal/vps_helper/`, `tools/`, `site/` |
+
+### VPS Documentation
+
+VPS operational docs (runbooks, data flow) are in `ih_market_companion/_internal/vps_helper/docs/`. Incident docs affecting KB ingest remain in `idlehacking_kb/docs/infrastructure/` with cross-references.
+
+### Open Investigations
+
+- **Daily runner** — `idlehacking_kb/scripts/daily_runner.py` stale since May 6. Manual verification required before launchd.
+- **Tampermonkey dedupe** — Browser audit needed before consolidating scripts.
+- **Discord boundary** — KB is canonical; idle-hacker workspace pending confirmation.
+- **KB legacy folders** — `idle-hacker/scripts/kb/`, `data/kb/`, `docs/kb/` pending move decision.
+- **KB site/** — Purpose unknown; investigation needed.
+- **KB experiments/** — Stale since April; archive candidate.
+
+---
