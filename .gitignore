@@ -1,4 +1,11 @@
-_internal/
+# Keep vps_helper tracked (critical infrastructure)
+!_internal/vps_helper/
+
+# Ignore other _internal/ directories
+_internal/*
+!_internal/vps_helper/
+_internal/*/*
+!_internal/vps_helper/*
 
 node_modules/
 site/node_modules/
