@@ -1,9 +1,63 @@
 {
   "type": "idlehacking_market_data_index",
   "schema_version": 1,
-  "generated_at": "2026-06-06T10:31:45Z",
+  "generated_at": "2026-06-06T11:58:10Z",
   "latest": "latest.json",
   "recent": [
+    {
+      "path": "snapshots/recent/2026-06-06T115329Z.json",
+      "generated_at": "2026-06-06T11:53:29Z",
+      "market_captured_at": "2026-06-05T19:08:50.020Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-06-06T113829Z.json",
+      "generated_at": "2026-06-06T11:38:29Z",
+      "market_captured_at": "2026-06-05T19:08:50.020Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-06-06T112329Z.json",
+      "generated_at": "2026-06-06T11:23:29Z",
+      "market_captured_at": "2026-06-05T19:08:50.020Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-06-06T110829Z.json",
+      "generated_at": "2026-06-06T11:08:29Z",
+      "market_captured_at": "2026-06-05T19:08:50.020Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-06-06T105329Z.json",
+      "generated_at": "2026-06-06T10:53:29Z",
+      "market_captured_at": "2026-06-05T19:08:50.020Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-06-06T103829Z.json",
+      "generated_at": "2026-06-06T10:38:29Z",
+      "market_captured_at": "2026-06-05T19:08:50.020Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
     {
       "path": "snapshots/recent/2026-06-06T102329Z.json",
       "generated_at": "2026-06-06T10:23:29Z",
