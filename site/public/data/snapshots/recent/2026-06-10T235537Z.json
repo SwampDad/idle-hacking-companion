@@ -1,18 +1,18 @@
 {
-  "date_key": "2026-06-11",
-  "generated_at": "2026-06-11T01:55:37.808Z",
+  "date_key": "2026-06-10",
+  "generated_at": "2026-06-10T23:55:37.811Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-06-11T01:55:37.808Z",
-    "last_market_capture_at": "2026-06-11T01:55:37.805Z",
+    "generated_at": "2026-06-10T23:55:37.811Z",
+    "last_market_capture_at": "2026-06-10T23:55:37.809Z",
     "last_volume_change_at": "2026-06-10T23:07:03.189Z",
     "pricing_status": "ok",
     "status": "warn",
     "volume_status": "partial"
   },
   "market": {
-    "captured_at": "2026-06-11T01:55:37.805Z",
+    "captured_at": "2026-06-10T23:55:37.809Z",
     "commodities": [
       {
         "askLevelCount": 10,
@@ -303,7 +303,7 @@
         "volumeQty": 5066205
       }
     ],
-    "date_key": "2026-06-11",
+    "date_key": "2026-06-10",
     "game": "idlehacking",
     "raw_available": true,
     "schema_version": 1,
@@ -320,7 +320,7 @@
   "schema_version": 1,
   "snapshots": {
     "market": {
-      "captured_at": "2026-06-11T01:55:37.805Z",
+      "captured_at": "2026-06-10T23:55:37.809Z",
       "commodities": [
         {
           "askLevelCount": 10,
@@ -611,7 +611,7 @@
           "volumeQty": 5066205
         }
       ],
-      "date_key": "2026-06-11",
+      "date_key": "2026-06-10",
       "game": "idlehacking",
       "raw_available": true,
       "schema_version": 1,
