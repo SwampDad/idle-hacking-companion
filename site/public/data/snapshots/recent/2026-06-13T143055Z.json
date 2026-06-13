@@ -1,10 +1,10 @@
 {
   "date_key": "2026-06-13",
-  "generated_at": "2026-06-13T15:15:55.113Z",
+  "generated_at": "2026-06-13T14:30:55.148Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-06-13T15:15:55.113Z",
+    "generated_at": "2026-06-13T14:30:55.148Z",
     "last_market_capture_at": "2026-06-13T03:55:37.950Z",
     "last_volume_change_at": "2026-06-13T01:57:00.420Z",
     "pricing_status": "cached",
