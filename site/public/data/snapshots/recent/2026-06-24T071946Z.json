@@ -1,42 +1,42 @@
 {
   "date_key": "2026-06-24",
-  "generated_at": "2026-06-24T07:49:27.434Z",
+  "generated_at": "2026-06-24T07:19:46.286Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-06-24T07:49:27.434Z",
-    "last_market_capture_at": "2026-06-24T07:49:27.420Z",
+    "generated_at": "2026-06-24T07:19:46.286Z",
+    "last_market_capture_at": "2026-06-24T07:19:46.271Z",
     "last_volume_change_at": "2026-06-24T05:48:19.199Z",
     "pricing_status": "ok",
     "status": "warn",
     "volume_status": "partial"
   },
   "market": {
-    "captured_at": "2026-06-24T07:49:27.420Z",
+    "captured_at": "2026-06-24T07:19:46.271Z",
     "commodities": [
       {
         "askLevelCount": 10,
-        "askVolumeQty": 26418478,
-        "bestAskCents": 13799999,
-        "bestAskQty": 2570000,
-        "bestBidCents": 13700000,
-        "bestBidQty": 2547959,
+        "askVolumeQty": 31728000,
+        "bestAskCents": 13700000,
+        "bestAskQty": 1500,
+        "bestBidCents": 13400501,
+        "bestBidQty": 4000000,
         "bidLevelCount": 10,
-        "bidVolumeQty": 35124048,
+        "bidVolumeQty": 27806089,
         "hasBook": true,
         "id": "chips",
         "isActive": true,
         "isEssence": false,
         "label": "Chips",
-        "midPriceCents": 13750000,
-        "spreadPct": 0.7246304872920644,
-        "volumeQty": 61542526
+        "midPriceCents": 13550251,
+        "spreadPct": 2.186124087591241,
+        "volumeQty": 59534089
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 827322303798,
-        "bestAskCents": 257,
-        "bestAskQty": 10380000000,
+        "askVolumeQty": 1653652763798,
+        "bestAskCents": 259,
+        "bestAskQty": 81822460000,
         "bestBidCents": 231,
         "bestBidQty": 30000000000,
         "bidLevelCount": 10,
@@ -46,9 +46,9 @@
         "isActive": true,
         "isEssence": false,
         "label": "Cycles",
-        "midPriceCents": 244,
-        "spreadPct": 10.116731517509727,
-        "volumeQty": 1138051560368
+        "midPriceCents": 245,
+        "spreadPct": 10.81081081081081,
+        "volumeQty": 1964382020368
       },
       {
         "askLevelCount": 10,
@@ -106,13 +106,13 @@
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 671,
+        "askVolumeQty": 651,
         "bestAskCents": 345000000000,
-        "bestAskQty": 1,
+        "bestAskQty": 3,
         "bestBidCents": 344410000000,
-        "bestBidQty": 18,
+        "bestBidQty": 126,
         "bidLevelCount": 10,
-        "bidVolumeQty": 3877,
+        "bidVolumeQty": 3585,
         "hasBook": true,
         "id": "hackcoin",
         "isActive": true,
@@ -120,13 +120,13 @@
         "label": "Hackcoin",
         "midPriceCents": 344705000000,
         "spreadPct": 0.17101449275362318,
-        "volumeQty": 4548
+        "volumeQty": 4236
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 2210122383238,
+        "askVolumeQty": 2296297383238,
         "bestAskCents": 190,
-        "bestAskQty": 521735950500,
+        "bestAskQty": 607910950500,
         "bestBidCents": 189,
         "bestBidQty": 15430000000,
         "bidLevelCount": 10,
@@ -138,7 +138,7 @@
         "label": "Hashes",
         "midPriceCents": 190,
         "spreadPct": 0.5263157894736842,
-        "volumeQty": 2608989774267
+        "volumeQty": 2695164774267
       },
       {
         "askLevelCount": 10,
@@ -160,9 +160,9 @@
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 4901415627895,
-        "bestAskCents": 176,
-        "bestAskQty": 2940000000,
+        "askVolumeQty": 3319755887895,
+        "bestAskCents": 174,
+        "bestAskQty": 5002200000,
         "bestBidCents": 156,
         "bestBidQty": 30000000000,
         "bidLevelCount": 10,
@@ -172,9 +172,9 @@
         "isActive": true,
         "isEssence": false,
         "label": "Packets",
-        "midPriceCents": 166,
-        "spreadPct": 11.363636363636363,
-        "volumeQty": 5353122366406
+        "midPriceCents": 165,
+        "spreadPct": 10.344827586206897,
+        "volumeQty": 3771462626406
       },
       {
         "askLevelCount": 10,
@@ -196,11 +196,11 @@
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 16,
-        "bestAskCents": 73700000000000,
-        "bestAskQty": 2,
-        "bestBidCents": 68500000000002,
-        "bestBidQty": 1,
+        "askVolumeQty": 15,
+        "bestAskCents": 73800000000000,
+        "bestAskQty": 1,
+        "bestBidCents": 68500000000000,
+        "bestBidQty": 2,
         "bidLevelCount": 10,
         "bidVolumeQty": 14,
         "hasBook": true,
@@ -208,9 +208,9 @@
         "isActive": true,
         "isEssence": false,
         "label": "Premium Access Key (30d)",
-        "midPriceCents": 71100000000001,
-        "spreadPct": 7.055630936225238,
-        "volumeQty": 30
+        "midPriceCents": 71150000000000,
+        "spreadPct": 7.181571815718158,
+        "volumeQty": 29
       },
       {
         "askLevelCount": 10,
@@ -250,13 +250,13 @@
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 1653619288115,
+        "askVolumeQty": 1737812288115,
         "bestAskCents": 169,
-        "bestAskQty": 663256760000,
+        "bestAskQty": 747449760000,
         "bestBidCents": 153,
-        "bestBidQty": 29998047150,
+        "bestBidQty": 30000000000,
         "bidLevelCount": 10,
-        "bidVolumeQty": 874083490189,
+        "bidVolumeQty": 874085443039,
         "hasBook": true,
         "id": "snippets",
         "isActive": true,
@@ -264,7 +264,7 @@
         "label": "Snippets",
         "midPriceCents": 161,
         "spreadPct": 9.467455621301776,
-        "volumeQty": 2527702778304
+        "volumeQty": 2611897731154
       },
       {
         "askLevelCount": 10,
@@ -320,31 +320,31 @@
   "schema_version": 1,
   "snapshots": {
     "market": {
-      "captured_at": "2026-06-24T07:49:27.420Z",
+      "captured_at": "2026-06-24T07:19:46.271Z",
       "commodities": [
         {
           "askLevelCount": 10,
-          "askVolumeQty": 26418478,
-          "bestAskCents": 13799999,
-          "bestAskQty": 2570000,
-          "bestBidCents": 13700000,
-          "bestBidQty": 2547959,
+          "askVolumeQty": 31728000,
+          "bestAskCents": 13700000,
+          "bestAskQty": 1500,
+          "bestBidCents": 13400501,
+          "bestBidQty": 4000000,
           "bidLevelCount": 10,
-          "bidVolumeQty": 35124048,
+          "bidVolumeQty": 27806089,
           "hasBook": true,
           "id": "chips",
           "isActive": true,
           "isEssence": false,
           "label": "Chips",
-          "midPriceCents": 13750000,
-          "spreadPct": 0.7246304872920644,
-          "volumeQty": 61542526
+          "midPriceCents": 13550251,
+          "spreadPct": 2.186124087591241,
+          "volumeQty": 59534089
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 827322303798,
-          "bestAskCents": 257,
-          "bestAskQty": 10380000000,
+          "askVolumeQty": 1653652763798,
+          "bestAskCents": 259,
+          "bestAskQty": 81822460000,
           "bestBidCents": 231,
           "bestBidQty": 30000000000,
           "bidLevelCount": 10,
@@ -354,9 +354,9 @@
           "isActive": true,
           "isEssence": false,
           "label": "Cycles",
-          "midPriceCents": 244,
-          "spreadPct": 10.116731517509727,
-          "volumeQty": 1138051560368
+          "midPriceCents": 245,
+          "spreadPct": 10.81081081081081,
+          "volumeQty": 1964382020368
         },
         {
           "askLevelCount": 10,
@@ -414,13 +414,13 @@
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 671,
+          "askVolumeQty": 651,
           "bestAskCents": 345000000000,
-          "bestAskQty": 1,
+          "bestAskQty": 3,
           "bestBidCents": 344410000000,
-          "bestBidQty": 18,
+          "bestBidQty": 126,
           "bidLevelCount": 10,
-          "bidVolumeQty": 3877,
+          "bidVolumeQty": 3585,
           "hasBook": true,
           "id": "hackcoin",
           "isActive": true,
@@ -428,13 +428,13 @@
           "label": "Hackcoin",
           "midPriceCents": 344705000000,
           "spreadPct": 0.17101449275362318,
-          "volumeQty": 4548
+          "volumeQty": 4236
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 2210122383238,
+          "askVolumeQty": 2296297383238,
           "bestAskCents": 190,
-          "bestAskQty": 521735950500,
+          "bestAskQty": 607910950500,
           "bestBidCents": 189,
           "bestBidQty": 15430000000,
           "bidLevelCount": 10,
@@ -446,7 +446,7 @@
           "label": "Hashes",
           "midPriceCents": 190,
           "spreadPct": 0.5263157894736842,
-          "volumeQty": 2608989774267
+          "volumeQty": 2695164774267
         },
         {
           "askLevelCount": 10,
@@ -468,9 +468,9 @@
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 4901415627895,
-          "bestAskCents": 176,
-          "bestAskQty": 2940000000,
+          "askVolumeQty": 3319755887895,
+          "bestAskCents": 174,
+          "bestAskQty": 5002200000,
           "bestBidCents": 156,
           "bestBidQty": 30000000000,
           "bidLevelCount": 10,
@@ -480,9 +480,9 @@
           "isActive": true,
           "isEssence": false,
           "label": "Packets",
-          "midPriceCents": 166,
-          "spreadPct": 11.363636363636363,
-          "volumeQty": 5353122366406
+          "midPriceCents": 165,
+          "spreadPct": 10.344827586206897,
+          "volumeQty": 3771462626406
         },
         {
           "askLevelCount": 10,
@@ -504,11 +504,11 @@
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 16,
-          "bestAskCents": 73700000000000,
-          "bestAskQty": 2,
-          "bestBidCents": 68500000000002,
-          "bestBidQty": 1,
+          "askVolumeQty": 15,
+          "bestAskCents": 73800000000000,
+          "bestAskQty": 1,
+          "bestBidCents": 68500000000000,
+          "bestBidQty": 2,
           "bidLevelCount": 10,
           "bidVolumeQty": 14,
           "hasBook": true,
@@ -516,9 +516,9 @@
           "isActive": true,
           "isEssence": false,
           "label": "Premium Access Key (30d)",
-          "midPriceCents": 71100000000001,
-          "spreadPct": 7.055630936225238,
-          "volumeQty": 30
+          "midPriceCents": 71150000000000,
+          "spreadPct": 7.181571815718158,
+          "volumeQty": 29
         },
         {
           "askLevelCount": 10,
@@ -558,13 +558,13 @@
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 1653619288115,
+          "askVolumeQty": 1737812288115,
           "bestAskCents": 169,
-          "bestAskQty": 663256760000,
+          "bestAskQty": 747449760000,
           "bestBidCents": 153,
-          "bestBidQty": 29998047150,
+          "bestBidQty": 30000000000,
           "bidLevelCount": 10,
-          "bidVolumeQty": 874083490189,
+          "bidVolumeQty": 874085443039,
           "hasBook": true,
           "id": "snippets",
           "isActive": true,
@@ -572,7 +572,7 @@
           "label": "Snippets",
           "midPriceCents": 161,
           "spreadPct": 9.467455621301776,
-          "volumeQty": 2527702778304
+          "volumeQty": 2611897731154
         },
         {
           "askLevelCount": 10,
