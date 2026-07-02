@@ -1,9 +1,117 @@
 {
   "type": "idlehacking_market_data_index",
   "schema_version": 1,
-  "generated_at": "2026-07-02T08:19:14Z",
+  "generated_at": "2026-07-02T11:12:58Z",
   "latest": "latest.json",
   "recent": [
+    {
+      "path": "snapshots/recent/2026-07-02T110555Z.json",
+      "generated_at": "2026-07-02T11:05:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T105055Z.json",
+      "generated_at": "2026-07-02T10:50:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T103555Z.json",
+      "generated_at": "2026-07-02T10:35:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T102055Z.json",
+      "generated_at": "2026-07-02T10:20:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T100555Z.json",
+      "generated_at": "2026-07-02T10:05:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T095055Z.json",
+      "generated_at": "2026-07-02T09:50:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T093555Z.json",
+      "generated_at": "2026-07-02T09:35:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T092055Z.json",
+      "generated_at": "2026-07-02T09:20:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T090555Z.json",
+      "generated_at": "2026-07-02T09:05:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T085055Z.json",
+      "generated_at": "2026-07-02T08:50:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T083555Z.json",
+      "generated_at": "2026-07-02T08:35:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-02T082055Z.json",
+      "generated_at": "2026-07-02T08:20:55Z",
+      "market_captured_at": "2026-06-30T19:32:55.229Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "cached",
+      "volume_status": "partial"
+    },
     {
       "path": "snapshots/recent/2026-07-02T080555Z.json",
       "generated_at": "2026-07-02T08:05:55Z",
