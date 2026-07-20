@@ -1,18 +1,18 @@
 {
   "date_key": "2026-07-20",
-  "generated_at": "2026-07-20T10:14:23.475Z",
+  "generated_at": "2026-07-20T07:29:23.472Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-07-20T10:14:23.475Z",
-    "last_market_capture_at": "2026-07-20T10:14:23.467Z",
+    "generated_at": "2026-07-20T07:29:23.472Z",
+    "last_market_capture_at": "2026-07-20T07:29:23.467Z",
     "last_volume_change_at": "2026-07-19T23:10:16.339Z",
     "pricing_status": "ok",
     "status": "down",
     "volume_status": "partial"
   },
   "market": {
-    "captured_at": "2026-07-20T10:14:23.467Z",
+    "captured_at": "2026-07-20T07:29:23.467Z",
     "commodities": [
       {
         "askLevelCount": 10,
@@ -320,7 +320,7 @@
   "schema_version": 1,
   "snapshots": {
     "market": {
-      "captured_at": "2026-07-20T10:14:23.467Z",
+      "captured_at": "2026-07-20T07:29:23.467Z",
       "commodities": [
         {
           "askLevelCount": 10,
