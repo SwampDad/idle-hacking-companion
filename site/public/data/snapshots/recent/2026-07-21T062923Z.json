@@ -1,18 +1,18 @@
 {
   "date_key": "2026-07-21",
-  "generated_at": "2026-07-21T06:59:23.505Z",
+  "generated_at": "2026-07-21T06:29:23.518Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-07-21T06:59:23.505Z",
-    "last_market_capture_at": "2026-07-21T06:59:23.502Z",
+    "generated_at": "2026-07-21T06:29:23.518Z",
+    "last_market_capture_at": "2026-07-21T06:29:23.507Z",
     "last_volume_change_at": "2026-07-21T06:29:05.688Z",
     "pricing_status": "ok",
     "status": "down",
     "volume_status": "partial"
   },
   "market": {
-    "captured_at": "2026-07-21T06:59:23.502Z",
+    "captured_at": "2026-07-21T06:29:23.507Z",
     "commodities": [
       {
         "askLevelCount": 10,
@@ -124,9 +124,9 @@
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 2582158488161,
+        "askVolumeQty": 2582163488161,
         "bestAskCents": 239,
-        "bestAskQty": 560813125832,
+        "bestAskQty": 560818125832,
         "bestBidCents": 217,
         "bestBidQty": 183265344656,
         "bidLevelCount": 10,
@@ -138,7 +138,7 @@
         "label": "Hashes",
         "midPriceCents": 228,
         "spreadPct": 9.205020920502092,
-        "volumeQty": 3586152909303
+        "volumeQty": 3586157909303
       },
       {
         "askLevelCount": 10,
@@ -250,7 +250,7 @@
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 9740136288893,
+        "askVolumeQty": 10286772819163,
         "bestAskCents": 95,
         "bestAskQty": 4963064868466,
         "bestBidCents": 90,
@@ -264,13 +264,13 @@
         "label": "Snippets",
         "midPriceCents": 93,
         "spreadPct": 5.263157894736842,
-        "volumeQty": 12111858068779
+        "volumeQty": 12658494599049
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 33217,
-        "bestAskCents": 960595911,
-        "bestAskQty": 688,
+        "askVolumeQty": 32530,
+        "bestAskCents": 970298901,
+        "bestAskQty": 19947,
         "bestBidCents": 500000100,
         "bestBidQty": 7000,
         "bidLevelCount": 10,
@@ -280,9 +280,9 @@
         "isActive": true,
         "isEssence": false,
         "label": "Stabilizers",
-        "midPriceCents": 730298006,
-        "spreadPct": 47.948966441103245,
-        "volumeQty": 559630
+        "midPriceCents": 735149501,
+        "spreadPct": 48.4694768298001,
+        "volumeQty": 558943
       },
       {
         "askLevelCount": 10,
@@ -320,7 +320,7 @@
   "schema_version": 1,
   "snapshots": {
     "market": {
-      "captured_at": "2026-07-21T06:59:23.502Z",
+      "captured_at": "2026-07-21T06:29:23.507Z",
       "commodities": [
         {
           "askLevelCount": 10,
@@ -432,9 +432,9 @@
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 2582158488161,
+          "askVolumeQty": 2582163488161,
           "bestAskCents": 239,
-          "bestAskQty": 560813125832,
+          "bestAskQty": 560818125832,
           "bestBidCents": 217,
           "bestBidQty": 183265344656,
           "bidLevelCount": 10,
@@ -446,7 +446,7 @@
           "label": "Hashes",
           "midPriceCents": 228,
           "spreadPct": 9.205020920502092,
-          "volumeQty": 3586152909303
+          "volumeQty": 3586157909303
         },
         {
           "askLevelCount": 10,
@@ -558,7 +558,7 @@
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 9740136288893,
+          "askVolumeQty": 10286772819163,
           "bestAskCents": 95,
           "bestAskQty": 4963064868466,
           "bestBidCents": 90,
@@ -572,13 +572,13 @@
           "label": "Snippets",
           "midPriceCents": 93,
           "spreadPct": 5.263157894736842,
-          "volumeQty": 12111858068779
+          "volumeQty": 12658494599049
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 33217,
-          "bestAskCents": 960595911,
-          "bestAskQty": 688,
+          "askVolumeQty": 32530,
+          "bestAskCents": 970298901,
+          "bestAskQty": 19947,
           "bestBidCents": 500000100,
           "bestBidQty": 7000,
           "bidLevelCount": 10,
@@ -588,9 +588,9 @@
           "isActive": true,
           "isEssence": false,
           "label": "Stabilizers",
-          "midPriceCents": 730298006,
-          "spreadPct": 47.948966441103245,
-          "volumeQty": 559630
+          "midPriceCents": 735149501,
+          "spreadPct": 48.4694768298001,
+          "volumeQty": 558943
         },
         {
           "askLevelCount": 10,
