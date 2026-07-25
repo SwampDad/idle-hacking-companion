@@ -1,9 +1,63 @@
 {
   "type": "idlehacking_market_data_index",
   "schema_version": 1,
-  "generated_at": "2026-07-25T09:08:01Z",
+  "generated_at": "2026-07-25T10:42:14Z",
   "latest": "latest.json",
   "recent": [
+    {
+      "path": "snapshots/recent/2026-07-25T102649Z.json",
+      "generated_at": "2026-07-25T10:26:49Z",
+      "market_captured_at": "2026-07-25T10:26:49.638Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-25T101149Z.json",
+      "generated_at": "2026-07-25T10:11:49Z",
+      "market_captured_at": "2026-07-25T10:11:49.631Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-25T095649Z.json",
+      "generated_at": "2026-07-25T09:56:49Z",
+      "market_captured_at": "2026-07-25T09:56:49.616Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-25T094149Z.json",
+      "generated_at": "2026-07-25T09:41:49Z",
+      "market_captured_at": "2026-07-25T09:41:49.609Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-25T092649Z.json",
+      "generated_at": "2026-07-25T09:26:49Z",
+      "market_captured_at": "2026-07-25T09:26:49.610Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-07-25T091149Z.json",
+      "generated_at": "2026-07-25T09:11:49Z",
+      "market_captured_at": "2026-07-25T09:11:49.608Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
     {
       "path": "snapshots/recent/2026-07-25T085649Z.json",
       "generated_at": "2026-07-25T08:56:49Z",
