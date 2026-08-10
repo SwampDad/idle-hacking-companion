@@ -1,18 +1,18 @@
 {
-  "date_key": "2026-08-10",
-  "generated_at": "2026-08-10T02:19:24.177Z",
+  "date_key": "2026-08-09",
+  "generated_at": "2026-08-09T23:47:18.053Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-08-10T02:19:24.177Z",
-    "last_market_capture_at": "2026-08-10T02:02:18.026Z",
+    "generated_at": "2026-08-09T23:47:18.053Z",
+    "last_market_capture_at": "2026-08-09T23:47:18.047Z",
     "last_volume_change_at": "2026-08-09T05:56:22.576Z",
-    "pricing_status": "cached",
+    "pricing_status": "ok",
     "status": "warn",
     "volume_status": "partial"
   },
   "market": {
-    "captured_at": "2026-08-10T02:02:18.026Z",
+    "captured_at": "2026-08-09T23:47:18.047Z",
     "commodities": [
       {
         "askLevelCount": 10,
@@ -303,26 +303,24 @@
         "volumeQty": 7481897
       }
     ],
-    "date_key": "2026-08-10",
+    "date_key": "2026-08-09",
     "game": "idlehacking",
     "raw_available": true,
     "schema_version": 1,
     "scope": "stackables_commodities_only",
     "source": {
-      "health": "cached",
-      "stale": true,
-      "state": "cache",
+      "health": "ok",
+      "stale": false,
+      "state": "live",
       "using_fallback": false,
-      "warnings": [
-        "used_cached_market_books_after_bookless_capture"
-      ]
+      "warnings": []
     },
     "type": "market_public_snapshot"
   },
   "schema_version": 1,
   "snapshots": {
     "market": {
-      "captured_at": "2026-08-10T02:02:18.026Z",
+      "captured_at": "2026-08-09T23:47:18.047Z",
       "commodities": [
         {
           "askLevelCount": 10,
@@ -613,19 +611,17 @@
           "volumeQty": 7481897
         }
       ],
-      "date_key": "2026-08-10",
+      "date_key": "2026-08-09",
       "game": "idlehacking",
       "raw_available": true,
       "schema_version": 1,
       "scope": "stackables_commodities_only",
       "source": {
-        "health": "cached",
-        "stale": true,
-        "state": "cache",
+        "health": "ok",
+        "stale": false,
+        "state": "live",
         "using_fallback": false,
-        "warnings": [
-          "used_cached_market_books_after_bookless_capture"
-        ]
+        "warnings": []
       },
       "type": "market_public_snapshot"
     },

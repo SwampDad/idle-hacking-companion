@@ -1,13 +1,13 @@
 {
   "date_key": "2026-08-10",
-  "generated_at": "2026-08-10T02:19:24.177Z",
+  "generated_at": "2026-08-10T02:02:18.029Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-08-10T02:19:24.177Z",
+    "generated_at": "2026-08-10T02:02:18.029Z",
     "last_market_capture_at": "2026-08-10T02:02:18.026Z",
     "last_volume_change_at": "2026-08-09T05:56:22.576Z",
-    "pricing_status": "cached",
+    "pricing_status": "ok",
     "status": "warn",
     "volume_status": "partial"
   },
@@ -309,13 +309,11 @@
     "schema_version": 1,
     "scope": "stackables_commodities_only",
     "source": {
-      "health": "cached",
-      "stale": true,
-      "state": "cache",
+      "health": "ok",
+      "stale": false,
+      "state": "live",
       "using_fallback": false,
-      "warnings": [
-        "used_cached_market_books_after_bookless_capture"
-      ]
+      "warnings": []
     },
     "type": "market_public_snapshot"
   },
@@ -619,13 +617,11 @@
       "schema_version": 1,
       "scope": "stackables_commodities_only",
       "source": {
-        "health": "cached",
-        "stale": true,
-        "state": "cache",
+        "health": "ok",
+        "stale": false,
+        "state": "live",
         "using_fallback": false,
-        "warnings": [
-          "used_cached_market_books_after_bookless_capture"
-        ]
+        "warnings": []
       },
       "type": "market_public_snapshot"
     },
