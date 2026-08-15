@@ -1,24 +1,24 @@
 {
   "date_key": "2026-08-15",
-  "generated_at": "2026-08-15T02:46:17.857Z",
+  "generated_at": "2026-08-15T02:31:17.870Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-08-15T02:46:17.857Z",
-    "last_market_capture_at": "2026-08-15T02:46:17.853Z",
-    "last_volume_change_at": "2026-08-15T02:45:20.573Z",
+    "generated_at": "2026-08-15T02:31:17.870Z",
+    "last_market_capture_at": "2026-08-15T02:31:17.866Z",
+    "last_volume_change_at": "2026-08-15T02:30:46.951Z",
     "pricing_status": "ok",
     "status": "ok",
     "volume_status": "partial"
   },
   "market": {
-    "captured_at": "2026-08-15T02:46:17.853Z",
+    "captured_at": "2026-08-15T02:31:17.866Z",
     "commodities": [
       {
         "askLevelCount": 10,
-        "askVolumeQty": 352827410,
+        "askVolumeQty": 354318478,
         "bestAskCents": 24041365,
-        "bestAskQty": 4519616,
+        "bestAskQty": 6010684,
         "bestBidCents": 23887755,
         "bestBidQty": 22548315,
         "bidLevelCount": 10,
@@ -30,13 +30,13 @@
         "label": "Chips",
         "midPriceCents": 23964560,
         "spreadPct": 0.6389404262195595,
-        "volumeQty": 655704767
+        "volumeQty": 657195835
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 1971993191981,
+        "askVolumeQty": 1972003191981,
         "bestAskCents": 113,
-        "bestAskQty": 2118619654,
+        "bestAskQty": 2128619654,
         "bestBidCents": 97,
         "bestBidQty": 503315905947,
         "bidLevelCount": 10,
@@ -48,7 +48,7 @@
         "label": "Cycles",
         "midPriceCents": 105,
         "spreadPct": 14.15929203539823,
-        "volumeQty": 9609178605845
+        "volumeQty": 9609188605845
       },
       {
         "askLevelCount": 10,
@@ -200,9 +200,9 @@
         "bestAskCents": 289656194042844,
         "bestAskQty": 1,
         "bestBidCents": 280000000000000,
-        "bestBidQty": 4,
+        "bestBidQty": 5,
         "bidLevelCount": 10,
-        "bidVolumeQty": 19,
+        "bidVolumeQty": 20,
         "hasBook": true,
         "id": "premium_access_keys_30d",
         "isActive": true,
@@ -210,7 +210,7 @@
         "label": "Premium Access Key (30d)",
         "midPriceCents": 284828097021422,
         "spreadPct": 3.3336742805561133,
-        "volumeQty": 41
+        "volumeQty": 42
       },
       {
         "askLevelCount": 10,
@@ -320,13 +320,13 @@
   "schema_version": 1,
   "snapshots": {
     "market": {
-      "captured_at": "2026-08-15T02:46:17.853Z",
+      "captured_at": "2026-08-15T02:31:17.866Z",
       "commodities": [
         {
           "askLevelCount": 10,
-          "askVolumeQty": 352827410,
+          "askVolumeQty": 354318478,
           "bestAskCents": 24041365,
-          "bestAskQty": 4519616,
+          "bestAskQty": 6010684,
           "bestBidCents": 23887755,
           "bestBidQty": 22548315,
           "bidLevelCount": 10,
@@ -338,13 +338,13 @@
           "label": "Chips",
           "midPriceCents": 23964560,
           "spreadPct": 0.6389404262195595,
-          "volumeQty": 655704767
+          "volumeQty": 657195835
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 1971993191981,
+          "askVolumeQty": 1972003191981,
           "bestAskCents": 113,
-          "bestAskQty": 2118619654,
+          "bestAskQty": 2128619654,
           "bestBidCents": 97,
           "bestBidQty": 503315905947,
           "bidLevelCount": 10,
@@ -356,7 +356,7 @@
           "label": "Cycles",
           "midPriceCents": 105,
           "spreadPct": 14.15929203539823,
-          "volumeQty": 9609178605845
+          "volumeQty": 9609188605845
         },
         {
           "askLevelCount": 10,
@@ -508,9 +508,9 @@
           "bestAskCents": 289656194042844,
           "bestAskQty": 1,
           "bestBidCents": 280000000000000,
-          "bestBidQty": 4,
+          "bestBidQty": 5,
           "bidLevelCount": 10,
-          "bidVolumeQty": 19,
+          "bidVolumeQty": 20,
           "hasBook": true,
           "id": "premium_access_keys_30d",
           "isActive": true,
@@ -518,7 +518,7 @@
           "label": "Premium Access Key (30d)",
           "midPriceCents": 284828097021422,
           "spreadPct": 3.3336742805561133,
-          "volumeQty": 41
+          "volumeQty": 42
         },
         {
           "askLevelCount": 10,
@@ -626,64 +626,8 @@
       "type": "market_public_snapshot"
     },
     "market_events": {
-      "captured_at": "2026-08-15T02:45:20.573Z",
+      "captured_at": "2026-08-15T02:30:46.951Z",
       "events": [
-        {
-          "addedQty": 0,
-          "at": "2026-08-15T02:45:20.573Z",
-          "canceledQty": 0,
-          "commodity_id": "chips",
-          "commodity_label": "Chips",
-          "filledQty": 194700,
-          "kind": "fill",
-          "price": 240413.65,
-          "priceCents": 24041365,
-          "qty": 194700,
-          "side": "ask",
-          "source": "websocket_market_stackables_delta"
-        },
-        {
-          "addedQty": 0,
-          "at": "2026-08-15T02:41:21.790Z",
-          "canceledQty": 0,
-          "commodity_id": "premium_access_keys_30d",
-          "commodity_label": "Premium Access Keys 30d",
-          "filledQty": 1,
-          "kind": "fill",
-          "price": 2800000000000,
-          "priceCents": 280000000000000,
-          "qty": 1,
-          "side": "bid",
-          "source": "websocket_market_stackables_delta"
-        },
-        {
-          "addedQty": 0,
-          "at": "2026-08-15T02:37:53.366Z",
-          "canceledQty": 0,
-          "commodity_id": "chips",
-          "commodity_label": "Chips",
-          "filledQty": 1296368,
-          "kind": "fill",
-          "price": 240413.65,
-          "priceCents": 24041365,
-          "qty": 1296368,
-          "side": "ask",
-          "source": "websocket_market_stackables_delta"
-        },
-        {
-          "addedQty": 0,
-          "at": "2026-08-15T02:35:21.773Z",
-          "canceledQty": 0,
-          "commodity_id": "cycles",
-          "commodity_label": "Cycles",
-          "filledQty": 10000000,
-          "kind": "fill",
-          "price": 1.13,
-          "priceCents": 113,
-          "qty": 10000000,
-          "side": "ask",
-          "source": "websocket_market_stackables_delta"
-        },
         {
           "addedQty": 0,
           "at": "2026-08-15T02:30:46.951Z",
@@ -3427,6 +3371,62 @@
           "qty": 127,
           "side": "bid",
           "source": "websocket_market_stackables_delta"
+        },
+        {
+          "addedQty": 0,
+          "at": "2026-08-14T22:50:37.570Z",
+          "canceledQty": 0,
+          "commodity_id": "hackcoin",
+          "commodity_label": "Hackcoin",
+          "filledQty": 6,
+          "kind": "fill",
+          "price": 9725290798.83,
+          "priceCents": 972529079883,
+          "qty": 6,
+          "side": "bid",
+          "source": "websocket_market_stackables_delta"
+        },
+        {
+          "addedQty": 8250000,
+          "at": "2026-08-14T22:50:28.402Z",
+          "canceledQty": 0,
+          "commodity_id": "chips",
+          "commodity_label": "Chips",
+          "filledQty": 0,
+          "kind": "add",
+          "price": 246515.23,
+          "priceCents": 24651523,
+          "qty": 8250000,
+          "side": "ask",
+          "source": "websocket_market_stackables_delta"
+        },
+        {
+          "addedQty": 4282056,
+          "at": "2026-08-14T22:48:55.733Z",
+          "canceledQty": 0,
+          "commodity_id": "chips",
+          "commodity_label": "Chips",
+          "filledQty": 0,
+          "kind": "add",
+          "price": 246515.23,
+          "priceCents": 24651523,
+          "qty": 4282056,
+          "side": "ask",
+          "source": "websocket_market_stackables_delta"
+        },
+        {
+          "addedQty": 0,
+          "at": "2026-08-14T22:48:51.437Z",
+          "canceledQty": 2298630,
+          "commodity_id": "chips",
+          "commodity_label": "Chips",
+          "filledQty": 0,
+          "kind": "cancel",
+          "price": 228391.91,
+          "priceCents": 22839191,
+          "qty": 2298630,
+          "side": "bid",
+          "source": "websocket_market_stackables_delta"
         }
       ],
       "schema_version": 1,
@@ -3441,64 +3441,8 @@
   },
   "type": "idlehacking_public_market_feed",
   "volume_changes": {
-    "captured_at": "2026-08-15T02:45:20.573Z",
+    "captured_at": "2026-08-15T02:30:46.951Z",
     "changes": [
-      {
-        "addedQty": 0,
-        "at": "2026-08-15T02:45:20.573Z",
-        "canceledQty": 0,
-        "commodity_id": "chips",
-        "commodity_label": "Chips",
-        "filledQty": 194700,
-        "kind": "fill",
-        "price": 240413.65,
-        "priceCents": 24041365,
-        "qty": 194700,
-        "side": "ask",
-        "source": "websocket_market_stackables_delta"
-      },
-      {
-        "addedQty": 0,
-        "at": "2026-08-15T02:41:21.790Z",
-        "canceledQty": 0,
-        "commodity_id": "premium_access_keys_30d",
-        "commodity_label": "Premium Access Keys 30d",
-        "filledQty": 1,
-        "kind": "fill",
-        "price": 2800000000000,
-        "priceCents": 280000000000000,
-        "qty": 1,
-        "side": "bid",
-        "source": "websocket_market_stackables_delta"
-      },
-      {
-        "addedQty": 0,
-        "at": "2026-08-15T02:37:53.366Z",
-        "canceledQty": 0,
-        "commodity_id": "chips",
-        "commodity_label": "Chips",
-        "filledQty": 1296368,
-        "kind": "fill",
-        "price": 240413.65,
-        "priceCents": 24041365,
-        "qty": 1296368,
-        "side": "ask",
-        "source": "websocket_market_stackables_delta"
-      },
-      {
-        "addedQty": 0,
-        "at": "2026-08-15T02:35:21.773Z",
-        "canceledQty": 0,
-        "commodity_id": "cycles",
-        "commodity_label": "Cycles",
-        "filledQty": 10000000,
-        "kind": "fill",
-        "price": 1.13,
-        "priceCents": 113,
-        "qty": 10000000,
-        "side": "ask",
-        "source": "websocket_market_stackables_delta"
-      },
       {
         "addedQty": 0,
         "at": "2026-08-15T02:30:46.951Z",
@@ -6240,6 +6184,62 @@
         "price": 9676906267.49,
         "priceCents": 967690626749,
         "qty": 127,
+        "side": "bid",
+        "source": "websocket_market_stackables_delta"
+      },
+      {
+        "addedQty": 0,
+        "at": "2026-08-14T22:50:37.570Z",
+        "canceledQty": 0,
+        "commodity_id": "hackcoin",
+        "commodity_label": "Hackcoin",
+        "filledQty": 6,
+        "kind": "fill",
+        "price": 9725290798.83,
+        "priceCents": 972529079883,
+        "qty": 6,
+        "side": "bid",
+        "source": "websocket_market_stackables_delta"
+      },
+      {
+        "addedQty": 8250000,
+        "at": "2026-08-14T22:50:28.402Z",
+        "canceledQty": 0,
+        "commodity_id": "chips",
+        "commodity_label": "Chips",
+        "filledQty": 0,
+        "kind": "add",
+        "price": 246515.23,
+        "priceCents": 24651523,
+        "qty": 8250000,
+        "side": "ask",
+        "source": "websocket_market_stackables_delta"
+      },
+      {
+        "addedQty": 4282056,
+        "at": "2026-08-14T22:48:55.733Z",
+        "canceledQty": 0,
+        "commodity_id": "chips",
+        "commodity_label": "Chips",
+        "filledQty": 0,
+        "kind": "add",
+        "price": 246515.23,
+        "priceCents": 24651523,
+        "qty": 4282056,
+        "side": "ask",
+        "source": "websocket_market_stackables_delta"
+      },
+      {
+        "addedQty": 0,
+        "at": "2026-08-14T22:48:51.437Z",
+        "canceledQty": 2298630,
+        "commodity_id": "chips",
+        "commodity_label": "Chips",
+        "filledQty": 0,
+        "kind": "cancel",
+        "price": 228391.91,
+        "priceCents": 22839191,
+        "qty": 2298630,
         "side": "bid",
         "source": "websocket_market_stackables_delta"
       }
