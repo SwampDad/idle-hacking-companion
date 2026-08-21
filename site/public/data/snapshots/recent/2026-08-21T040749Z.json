@@ -1,18 +1,18 @@
 {
   "date_key": "2026-08-21",
-  "generated_at": "2026-08-21T04:13:15.454Z",
+  "generated_at": "2026-08-21T04:07:49.127Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-08-21T04:13:15.454Z",
-    "last_market_capture_at": "2026-08-21T04:13:15.441Z",
-    "last_volume_change_at": "2026-08-21T04:11:12.015Z",
+    "generated_at": "2026-08-21T04:07:49.127Z",
+    "last_market_capture_at": "2026-08-21T04:07:49.101Z",
+    "last_volume_change_at": "2026-08-21T04:05:43.243Z",
     "pricing_status": "ok",
     "status": "ok",
     "volume_status": "partial"
   },
   "market": {
-    "captured_at": "2026-08-21T04:13:15.441Z",
+    "captured_at": "2026-08-21T04:07:49.101Z",
     "commodities": [
       {
         "askLevelCount": 10,
@@ -160,9 +160,9 @@
       },
       {
         "askLevelCount": 10,
-        "askVolumeQty": 4333788399371,
+        "askVolumeQty": 4333788899371,
         "bestAskCents": 111,
-        "bestAskQty": 3650974947695,
+        "bestAskQty": 3650975447695,
         "bestBidCents": 100,
         "bestBidQty": 299602428320,
         "bidLevelCount": 10,
@@ -174,7 +174,7 @@
         "label": "Packets",
         "midPriceCents": 106,
         "spreadPct": 9.90990990990991,
-        "volumeQty": 17144197837404
+        "volumeQty": 17144198337404
       },
       {
         "askLevelCount": 10,
@@ -320,7 +320,7 @@
   "schema_version": 1,
   "snapshots": {
     "market": {
-      "captured_at": "2026-08-21T04:13:15.441Z",
+      "captured_at": "2026-08-21T04:07:49.101Z",
       "commodities": [
         {
           "askLevelCount": 10,
@@ -468,9 +468,9 @@
         },
         {
           "askLevelCount": 10,
-          "askVolumeQty": 4333788399371,
+          "askVolumeQty": 4333788899371,
           "bestAskCents": 111,
-          "bestAskQty": 3650974947695,
+          "bestAskQty": 3650975447695,
           "bestBidCents": 100,
           "bestBidQty": 299602428320,
           "bidLevelCount": 10,
@@ -482,7 +482,7 @@
           "label": "Packets",
           "midPriceCents": 106,
           "spreadPct": 9.90990990990991,
-          "volumeQty": 17144197837404
+          "volumeQty": 17144198337404
         },
         {
           "askLevelCount": 10,
@@ -626,22 +626,8 @@
       "type": "market_public_snapshot"
     },
     "market_events": {
-      "captured_at": "2026-08-21T04:11:12.015Z",
+      "captured_at": "2026-08-21T04:05:43.243Z",
       "events": [
-        {
-          "addedQty": 0,
-          "at": "2026-08-21T04:11:12.015Z",
-          "canceledQty": 0,
-          "commodity_id": "packets",
-          "commodity_label": "Packets",
-          "filledQty": 500000,
-          "kind": "fill",
-          "price": 1.11,
-          "priceCents": 111,
-          "qty": 500000,
-          "side": "ask",
-          "source": "websocket_market_stackables_delta"
-        },
         {
           "addedQty": 0,
           "at": "2026-08-21T04:05:43.243Z",
@@ -3427,6 +3413,20 @@
           "qty": 44,
           "side": "bid",
           "source": "websocket_market_stackables_delta"
+        },
+        {
+          "addedQty": 0,
+          "at": "2026-08-21T00:12:59.561Z",
+          "canceledQty": 0,
+          "commodity_id": "essence_prosperity",
+          "commodity_label": "Prosperity Essence",
+          "filledQty": 49,
+          "kind": "fill",
+          "price": 251250,
+          "priceCents": 25125000,
+          "qty": 49,
+          "side": "bid",
+          "source": "websocket_market_stackables_delta"
         }
       ],
       "schema_version": 1,
@@ -3441,22 +3441,8 @@
   },
   "type": "idlehacking_public_market_feed",
   "volume_changes": {
-    "captured_at": "2026-08-21T04:11:12.015Z",
+    "captured_at": "2026-08-21T04:05:43.243Z",
     "changes": [
-      {
-        "addedQty": 0,
-        "at": "2026-08-21T04:11:12.015Z",
-        "canceledQty": 0,
-        "commodity_id": "packets",
-        "commodity_label": "Packets",
-        "filledQty": 500000,
-        "kind": "fill",
-        "price": 1.11,
-        "priceCents": 111,
-        "qty": 500000,
-        "side": "ask",
-        "source": "websocket_market_stackables_delta"
-      },
       {
         "addedQty": 0,
         "at": "2026-08-21T04:05:43.243Z",
@@ -6240,6 +6226,20 @@
         "price": 251250,
         "priceCents": 25125000,
         "qty": 44,
+        "side": "bid",
+        "source": "websocket_market_stackables_delta"
+      },
+      {
+        "addedQty": 0,
+        "at": "2026-08-21T00:12:59.561Z",
+        "canceledQty": 0,
+        "commodity_id": "essence_prosperity",
+        "commodity_label": "Prosperity Essence",
+        "filledQty": 49,
+        "kind": "fill",
+        "price": 251250,
+        "priceCents": 25125000,
+        "qty": 49,
         "side": "bid",
         "source": "websocket_market_stackables_delta"
       }
