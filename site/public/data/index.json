@@ -1,9 +1,18 @@
 {
   "type": "idlehacking_market_data_index",
   "schema_version": 1,
-  "generated_at": "2026-08-22T20:34:28Z",
+  "generated_at": "2026-08-22T20:54:26Z",
   "latest": "latest.json",
   "recent": [
+    {
+      "path": "snapshots/recent/2026-08-22T204428Z.json",
+      "generated_at": "2026-08-22T20:44:28Z",
+      "market_captured_at": "2026-08-22T20:44:28.194Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
     {
       "path": "snapshots/recent/2026-08-22T202928Z.json",
       "generated_at": "2026-08-22T20:29:28Z",
