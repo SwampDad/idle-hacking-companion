@@ -1,18 +1,18 @@
 {
   "date_key": "2026-08-24",
-  "generated_at": "2026-08-24T14:45:46.527Z",
+  "generated_at": "2026-08-24T14:30:46.427Z",
   "health": {
     "commodities_with_books": 16,
     "commodity_count": 16,
-    "generated_at": "2026-08-24T14:45:46.527Z",
-    "last_market_capture_at": "2026-08-24T14:45:46.519Z",
-    "last_volume_change_at": "2026-08-24T14:38:46.910Z",
+    "generated_at": "2026-08-24T14:30:46.427Z",
+    "last_market_capture_at": "2026-08-24T14:30:46.417Z",
+    "last_volume_change_at": "2026-08-24T14:27:02.970Z",
     "pricing_status": "ok",
     "status": "ok",
     "volume_status": "partial"
   },
   "market": {
-    "captured_at": "2026-08-24T14:45:46.519Z",
+    "captured_at": "2026-08-24T14:30:46.417Z",
     "commodities": [
       {
         "askLevelCount": 10,
@@ -20,9 +20,9 @@
         "bestAskCents": 22822866,
         "bestAskQty": 24475754,
         "bestBidCents": 21242256,
-        "bestBidQty": 1561941,
+        "bestBidQty": 1761941,
         "bidLevelCount": 10,
-        "bidVolumeQty": 356332847,
+        "bidVolumeQty": 356532847,
         "hasBook": true,
         "id": "chips",
         "isActive": true,
@@ -30,7 +30,7 @@
         "label": "Chips",
         "midPriceCents": 22032561,
         "spreadPct": 6.9255543979445875,
-        "volumeQty": 445238046
+        "volumeQty": 445438046
       },
       {
         "askLevelCount": 10,
@@ -110,9 +110,9 @@
         "bestAskCents": 1721350000000,
         "bestAskQty": 50,
         "bestBidCents": 1470000000000,
-        "bestBidQty": 94,
+        "bestBidQty": 99,
         "bidLevelCount": 10,
-        "bidVolumeQty": 3174,
+        "bidVolumeQty": 3179,
         "hasBook": true,
         "id": "hackcoin",
         "isActive": true,
@@ -120,7 +120,7 @@
         "label": "Hackcoin",
         "midPriceCents": 1595675000000,
         "spreadPct": 14.60191129055683,
-        "volumeQty": 4006
+        "volumeQty": 4011
       },
       {
         "askLevelCount": 10,
@@ -320,7 +320,7 @@
   "schema_version": 1,
   "snapshots": {
     "market": {
-      "captured_at": "2026-08-24T14:45:46.519Z",
+      "captured_at": "2026-08-24T14:30:46.417Z",
       "commodities": [
         {
           "askLevelCount": 10,
@@ -328,9 +328,9 @@
           "bestAskCents": 22822866,
           "bestAskQty": 24475754,
           "bestBidCents": 21242256,
-          "bestBidQty": 1561941,
+          "bestBidQty": 1761941,
           "bidLevelCount": 10,
-          "bidVolumeQty": 356332847,
+          "bidVolumeQty": 356532847,
           "hasBook": true,
           "id": "chips",
           "isActive": true,
@@ -338,7 +338,7 @@
           "label": "Chips",
           "midPriceCents": 22032561,
           "spreadPct": 6.9255543979445875,
-          "volumeQty": 445238046
+          "volumeQty": 445438046
         },
         {
           "askLevelCount": 10,
@@ -418,9 +418,9 @@
           "bestAskCents": 1721350000000,
           "bestAskQty": 50,
           "bestBidCents": 1470000000000,
-          "bestBidQty": 94,
+          "bestBidQty": 99,
           "bidLevelCount": 10,
-          "bidVolumeQty": 3174,
+          "bidVolumeQty": 3179,
           "hasBook": true,
           "id": "hackcoin",
           "isActive": true,
@@ -428,7 +428,7 @@
           "label": "Hackcoin",
           "midPriceCents": 1595675000000,
           "spreadPct": 14.60191129055683,
-          "volumeQty": 4006
+          "volumeQty": 4011
         },
         {
           "askLevelCount": 10,
@@ -626,36 +626,8 @@
       "type": "market_public_snapshot"
     },
     "market_events": {
-      "captured_at": "2026-08-24T14:38:46.910Z",
+      "captured_at": "2026-08-24T14:27:02.970Z",
       "events": [
-        {
-          "addedQty": 0,
-          "at": "2026-08-24T14:38:46.910Z",
-          "canceledQty": 0,
-          "commodity_id": "chips",
-          "commodity_label": "Chips",
-          "filledQty": 200000,
-          "kind": "fill",
-          "price": 212422.56,
-          "priceCents": 21242256,
-          "qty": 200000,
-          "side": "bid",
-          "source": "websocket_market_stackables_delta"
-        },
-        {
-          "addedQty": 0,
-          "at": "2026-08-24T14:34:00.257Z",
-          "canceledQty": 0,
-          "commodity_id": "hackcoin",
-          "commodity_label": "Hackcoin",
-          "filledQty": 5,
-          "kind": "fill",
-          "price": 14700000000,
-          "priceCents": 1470000000000,
-          "qty": 5,
-          "side": "bid",
-          "source": "websocket_market_stackables_delta"
-        },
         {
           "addedQty": 5000,
           "at": "2026-08-24T14:27:02.970Z",
@@ -3427,6 +3399,34 @@
           "qty": 100,
           "side": "bid",
           "source": "websocket_market_stackables_delta"
+        },
+        {
+          "addedQty": 100,
+          "at": "2026-08-24T11:21:55.890Z",
+          "canceledQty": 0,
+          "commodity_id": "hackcoin",
+          "commodity_label": "Hackcoin",
+          "filledQty": 0,
+          "kind": "add",
+          "price": 17819459975,
+          "priceCents": 1781945997500,
+          "qty": 100,
+          "side": "ask",
+          "source": "websocket_market_stackables_delta"
+        },
+        {
+          "addedQty": 26,
+          "at": "2026-08-24T11:21:43.329Z",
+          "canceledQty": 0,
+          "commodity_id": "hackcoin",
+          "commodity_label": "Hackcoin",
+          "filledQty": 0,
+          "kind": "add",
+          "price": 14619430530.32,
+          "priceCents": 1461943053032,
+          "qty": 26,
+          "side": "bid",
+          "source": "websocket_market_stackables_delta"
         }
       ],
       "schema_version": 1,
@@ -3441,36 +3441,8 @@
   },
   "type": "idlehacking_public_market_feed",
   "volume_changes": {
-    "captured_at": "2026-08-24T14:38:46.910Z",
+    "captured_at": "2026-08-24T14:27:02.970Z",
     "changes": [
-      {
-        "addedQty": 0,
-        "at": "2026-08-24T14:38:46.910Z",
-        "canceledQty": 0,
-        "commodity_id": "chips",
-        "commodity_label": "Chips",
-        "filledQty": 200000,
-        "kind": "fill",
-        "price": 212422.56,
-        "priceCents": 21242256,
-        "qty": 200000,
-        "side": "bid",
-        "source": "websocket_market_stackables_delta"
-      },
-      {
-        "addedQty": 0,
-        "at": "2026-08-24T14:34:00.257Z",
-        "canceledQty": 0,
-        "commodity_id": "hackcoin",
-        "commodity_label": "Hackcoin",
-        "filledQty": 5,
-        "kind": "fill",
-        "price": 14700000000,
-        "priceCents": 1470000000000,
-        "qty": 5,
-        "side": "bid",
-        "source": "websocket_market_stackables_delta"
-      },
       {
         "addedQty": 5000,
         "at": "2026-08-24T14:27:02.970Z",
@@ -6240,6 +6212,34 @@
         "price": 14402313848.75,
         "priceCents": 1440231384875,
         "qty": 100,
+        "side": "bid",
+        "source": "websocket_market_stackables_delta"
+      },
+      {
+        "addedQty": 100,
+        "at": "2026-08-24T11:21:55.890Z",
+        "canceledQty": 0,
+        "commodity_id": "hackcoin",
+        "commodity_label": "Hackcoin",
+        "filledQty": 0,
+        "kind": "add",
+        "price": 17819459975,
+        "priceCents": 1781945997500,
+        "qty": 100,
+        "side": "ask",
+        "source": "websocket_market_stackables_delta"
+      },
+      {
+        "addedQty": 26,
+        "at": "2026-08-24T11:21:43.329Z",
+        "canceledQty": 0,
+        "commodity_id": "hackcoin",
+        "commodity_label": "Hackcoin",
+        "filledQty": 0,
+        "kind": "add",
+        "price": 14619430530.32,
+        "priceCents": 1461943053032,
+        "qty": 26,
         "side": "bid",
         "source": "websocket_market_stackables_delta"
       }
