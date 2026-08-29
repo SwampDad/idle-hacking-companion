@@ -1,9 +1,63 @@
 {
   "type": "idlehacking_market_data_index",
   "schema_version": 1,
-  "generated_at": "2026-08-28T21:31:41Z",
+  "generated_at": "2026-08-29T03:20:47Z",
   "latest": "latest.json",
   "recent": [
+    {
+      "path": "snapshots/recent/2026-08-28T232241Z.json",
+      "generated_at": "2026-08-28T23:22:41Z",
+      "market_captured_at": "2026-08-28T23:22:41.657Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-08-28T230741Z.json",
+      "generated_at": "2026-08-28T23:07:41Z",
+      "market_captured_at": "2026-08-28T23:07:41.655Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-08-28T225241Z.json",
+      "generated_at": "2026-08-28T22:52:41Z",
+      "market_captured_at": "2026-08-28T22:52:41.655Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "partial"
+    },
+    {
+      "path": "snapshots/recent/2026-08-28T223745Z.json",
+      "generated_at": "2026-08-28T22:37:45Z",
+      "market_captured_at": "2026-08-28T22:37:45.664Z",
+      "commodity_count": 16,
+      "commodities_with_books": 16,
+      "pricing_status": "ok",
+      "volume_status": "unavailable"
+    },
+    {
+      "path": "snapshots/recent/2026-08-28T223734Z.json",
+      "generated_at": "2026-08-28T22:37:34Z",
+      "market_captured_at": "2026-08-28T22:37:34.237Z",
+      "commodity_count": 16,
+      "commodities_with_books": 0,
+      "pricing_status": "missing",
+      "volume_status": "unavailable"
+    },
+    {
+      "path": "snapshots/recent/2026-08-28T223438Z.json",
+      "generated_at": "2026-08-28T22:34:38Z",
+      "market_captured_at": "2026-08-28T22:34:38.857Z",
+      "commodity_count": 16,
+      "commodities_with_books": 0,
+      "pricing_status": "missing",
+      "volume_status": "unavailable"
+    },
     {
       "path": "snapshots/recent/2026-08-25T043046Z.json",
       "generated_at": "2026-08-25T04:30:46Z",
